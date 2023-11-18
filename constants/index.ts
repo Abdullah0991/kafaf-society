@@ -20,6 +20,7 @@ export const NAV_LINKS: NavBarItem[] = [
             { label: 'صالة الألبسة', key: 'clothes', href: '/achievements/clothes' },
         ]
     },
+    { href: '/news', key: 'news', label: 'آخر الأخبار', children: [] },
 ];
 
 export const APP_TITLE = 'جمعية كفاف للأعمال الإنسانية';
@@ -68,11 +69,8 @@ export const FOOTER_CONTACT_INFO = {
 
 export const ACHIEVEMENTS: { [p: string]: { title: string, media: string }[] } = {
     medical: [
-        { title: 'Medical Post 1', media: 'https://www.youtube.com/watch?v=LCY9JMWNZQs' },
-        { title: 'Medical Post 2', media: 'https://www.youtube.com/watch?v=zSnJXWz2xAA' },
-        { title: 'Medical Post 3', media: '/case.png' },
-        { title: 'Medical Post 4', media: '/bg_1.jpg' },
-        { title: 'Medical Post 5', media: 'https://www.youtube.com/watch?v=W9jeUuqxpaI' },
+        { title: '135 عملية جراحية رحلة علاج الشاب مجد', media: 'https://youtu.be/hJ_NRNcN1eg' },
+        { title: 'انب من عمل قسم التغذية في جمعية كفاف شمال حلب', media: 'https://youtu.be/tQNWUk-3f70' },
     ],
     activities: [
         { title: 'نشاط لإسعاد المؤنسات الغاليات', media: 'https://youtu.be/iSdx0bymFEQ' },
@@ -91,4 +89,36 @@ export const ACHIEVEMENTS: { [p: string]: { title: string, media: string }[] } =
     clothes: [],
 }
 
-export const CAMPAIGNS: { title: string, media: string }[] = [];
+export const CAMPAIGNS: { id: string, title: string, media: string, content: string }[] = [
+    {
+        id: '1234',
+        title: 'حملة مساعدة متضرري الزلزال',
+        media: '/bg_1.jpg',
+        content: `في 6 من شباط 2023 ضرب زلزال مزدوج ومدمًّر مناطق مختلفة من شمال سوريا وجنوب تركيا، كان مركزه ولايتي مرعش وغازي عينتاب وإقليم هاتاي الحدوي مع سوريا، ما تسبب في دمار واسع النطاق وأثّر على حياة عدد لا يحصى من الأفراد، وحول المنطقة إلى مدن منكوبة بثوان فقط!
+
+ترك الزّلزال الذي بلغت قوته 7.8 على مقياس ريختر المتضرّرين في حاجة ماسة إلى المساعدة والدعم، في “كفاف”، امتلأت مستشفياتنا جميعها وعلى الفور بادرنا إلى القيام بالإسعافات الأولية وإنقاذ الجرحى الواصلين، في صباح اليوم التالي للكارثة كنا ملتزمين وقمنا بتقدير كامل للاحتياجات في هذه الحالة الطارئة لتقديم المعونات الإغاثية وإنشاء مخيمات الإقامة المؤقتة وتجهيزها بالتدفئة والأثاث كل ذلك بالتوازي مع استمرار خدماتنا الطبية المنقذة للحياة في مشافينا.`
+    }
+];
+
+export const NEWS: { title: string, date: Date, content: string, media?: string }[] = [
+    {
+        title: 'اكتمال مشروع إنارة مخيف كفاف 2',
+        date: new Date(),
+        content: 'Test 1 Test 1 Test 1 Test 1 Test 1 Test 1 Test 1 Test 1'
+    },
+    {
+        title: 'افتتاح مخيم كفاف 2',
+        date: new Date(),
+        content: 'Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2'
+    },
+    {
+        title: 'اطلاق حملة مساعدة متضرري الزلزال',
+        date: new Date(),
+        content: 'Test 3 Test 3 Test 3 Test 3 Test 3 Test 3 Test 3 Test 3'
+    },
+    {
+        title: 'بدء استقبال تبرعاتكم في صندوق المستقبل بأيدينا في منطقة عفرين',
+        date: new Date(),
+        content: 'Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4'
+    }
+];

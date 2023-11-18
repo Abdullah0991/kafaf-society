@@ -2,6 +2,7 @@ import React from 'react';
 import { CAMPAIGNS, MATCH_URL_YOUTUBE } from "@/constants";
 import YTPlayer from "@/components/YTPlayer";
 import Image from "next/image";
+import Link from "next/link";
 
 const Campaign = () => {
     if (!CAMPAIGNS || !CAMPAIGNS.length) {
@@ -21,7 +22,7 @@ const Campaign = () => {
                                 title={camp.title}
                             /> :
                             <Image src={camp.media} alt={camp.title} width={560} height={100} />}
-                        <p className='pt-4 text-xl text-center'>{camp.title}</p>
+                        <Link href={`/campaign/${camp.id}`}><p className='pt-4 text-xl text-center'>{camp.title}</p></Link>
                     </div>
                 ))
             }

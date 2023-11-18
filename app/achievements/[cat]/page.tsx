@@ -3,7 +3,7 @@ import { ACHIEVEMENTS, MATCH_URL_YOUTUBE } from "@/constants";
 import Image from "next/image";
 import YTPlayer from "@/components/YTPlayer";
 
-const Page = ({ params }: { params: { cat: string } }) => {
+const AchievementCategory = ({ params }: { params: { cat: string } }) => {
     const posts = ACHIEVEMENTS[params.cat];
 
     if (!posts || !posts.length) {
@@ -31,4 +31,4 @@ const Page = ({ params }: { params: { cat: string } }) => {
     );
 };
 
-export default Page;
+export default AchievementCategory;
