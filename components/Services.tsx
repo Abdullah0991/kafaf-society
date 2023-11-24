@@ -9,7 +9,7 @@ const Services = () => {
             <div className='flex max-container padding-container relative w-full justify-end lg:gap-10'>
                 <div className='flex w-full flex-col lg:w-[50%]'>
                     <div className='bg-white rounded-3xl px-6 py-4 border-2 border-emerald-400'>
-                        <h2 className='bold-40 lg:bold-64 text-center lg:text-start text-lime-500'>إنجازاتـنا</h2>
+                        <h2 className='bold-40 lg:bold-64 text-center lg:text-start text-lime-500'>أقسامنا</h2>
                     </div>
                     <ul className='mt-10 grid gap-10 md:grid-cols-3 lg:mt-16 xl:gap-20'>
                         {

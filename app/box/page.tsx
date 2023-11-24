@@ -1,13 +1,12 @@
 import React from 'react';
-import Button from "@/components/Button";
-import Image from "next/image";
+import CaseDisplay from "@/components/CaseDisplay";
 
 const Box = () => {
     return (
         <>
             <section className='max-container padding-container min-h-screen'>
                 <div className='py-10'>
-                    <h1 className='text-4xl md:text-5xl'>صندوق المستقبل بأيدينا</h1>
+                    <h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>
                     <div className='mt-10 flex flex-col md:flex-row items-center gap-5'>
                         <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
                         <div className='text-4xl'>
@@ -34,20 +33,16 @@ const Box = () => {
                     هل تريد المساعدة؟
                 </a>
             </section>
-            <section id='case' className='max-container padding-container flex flex-col items-center gap-5'>
-                <div className='relative w-full min-h-[500px]'>
-                    <Image src={'/case.png'} alt={'case'} fill objectFit='contain' />
-                </div>
-                <p>
-                    <span className='text-3xl'>المبلغ المجموع: </span>
-                    <span className='text-3xl'>200 $</span>
-                </p>
-                <p className='text-2xl'>
-                    عمر بحاجة لعملية في العين لكي يستعيد نظره كما كان وتحتاج العملية ل <span className='font-bold text-red-600'>450 $</span> دولار أمريكي
-                </p>
+            <section id='case' className='max-container padding-container flex flex-col items-center gap-5 mt-6'>
+                <CaseDisplay
+                    description={'عمر بحاجة لعملية في العين لكي يستعيد نظره كما كان وتحتاج العملية لـ 450$ دولار أمريكي'}
+                    gathered={200}
+                    total={450}
+                    media={'/case.png'}
+                />
                 <a
                     href={'#'}
-                    className='flex justify-center gap-3 rounded-full border mt-5 w-full p-4 bg-emerald-500 text-white cursor-pointer'>
+                    className='flex justify-center gap-3 rounded-full border mt-2 w-full p-4 bg-emerald-500 text-white cursor-pointer'>
                     تبرع
                 </a>
             </section>
@@ -58,7 +53,7 @@ const Box = () => {
 const BoxCounter = ({ label, value1, value2 }: { label: string, value1: string, value2: string }) => {
     return (
         <div
-            className='flex flex-col items-center gap-4 rounded-3xl border-4 border-dashed min-w-[300px] py-4 px-6 md:flex-1'>
+            className='flex flex-col items-center gap-4 rounded-3xl border-4 border-dashed flex-1 md:min-w-[300px] py-4 px-6 md:flex-1'>
             <p className='text-2xl'>{label}</p>
             <div>
                 <p className='text-center text-3xl text-green-600'>{value1} $</p>

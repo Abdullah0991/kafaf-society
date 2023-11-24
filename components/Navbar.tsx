@@ -1,10 +1,14 @@
-import React from 'react';
+'use client';
 import Link from "next/link";
 import { NAV_LINKS } from "@/constants";
 import Image from "next/image";
 import HamburgerButton from "@/components/HamburgerButton";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+    const path = usePathname();
+    // const currentPath = router.pathname.slice(1);
+
     return (
         <nav className='z-30 py-6 px-6 flex justify-between items-center shadow'>
             <Link href={'/'} className='flex gap-2 items-center'>
@@ -16,15 +20,19 @@ const Navbar = () => {
                     NAV_LINKS.map((link) => (
                         <li key={link.key}>
                             {!link.children.length ?
-                                <Link href={link.href}>{link.label}</Link> :
+                                <Link href={link.href} className={path === link.href ? 'text-emerald-500' : ''}>
+                                    {link.label}
+                                </Link> :
                                 <div className="dropdown relative">
-                                    <button key={link.key}>{link.label}</button>
+                                    <button key={link.key} className={path.startsWith(link.href)  ? 'text-emerald-500' : ''}>
+                                        {link.label}
+                                    </button>
                                     <ul className="dropdown-menu hidden absolute left-0 mt-1 w-48 bg-white rounded-lg shadow-xl z-10 border">
                                         {
                                             link.children.map((child) => (
                                                 <li key={child.key}>
                                                     <Link href={child.href}
-                                                          className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                                                          className={`text-sm hover:bg-gray-100 ${path.endsWith(child.href) ? 'text-emerald-500':'text-gray-700'} block px-4 py-2`}
                                                     >
                                                         {child.label}
                                                     </Link>

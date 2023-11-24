@@ -27,10 +27,15 @@ const Footer = () => {
                             <FooterColumn title={FOOTER_CONTACT_INFO.title}>
                                 {
                                     FOOTER_CONTACT_INFO.links.map((link) => (
-                                        <div className='flex gap-2' key={link.label}>
+                                        <div className='flex items-center gap-2' key={link.label}>
                                             <p className='whitespace-nowrap text-gray-30'>{link.label}:</p>
                                             <Link href={link.href} className='flex gap-4 md:flex-col lg:flex-row'>
-                                                <p className='medium-14 whitespace-nowrap text-blue-70'>{link.value}</p>
+                                                <p
+                                                    className='medium-14 whitespace-nowrap text-blue-70'
+                                                    style={{ direction: 'ltr' }}
+                                                >
+                                                    {link.value}
+                                                </p>
                                             </Link>
                                         </div>
                                     ))

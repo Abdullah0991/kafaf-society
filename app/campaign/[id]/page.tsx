@@ -13,7 +13,7 @@ const CampaignDetails = ({ params }: { params: { id: string } }) => {
     }
 
     return (
-        <div className='max-container padding-container py-20'>
+        <article className='max-container padding-container py-20'>
             <div className='relative w-full h-[300px] border'>
                 <BackButton className='absolute -top-9' />
                 <Image src={campaign.media} alt={campaign.title} fill objectFit={'contain'} />
@@ -22,7 +22,7 @@ const CampaignDetails = ({ params }: { params: { id: string } }) => {
             <p className='text-lg px-4 py-4 mb-10 whitespace-break-spaces'>
                 {campaign.content}
             </p>
-        </div>
+        </article>
     );
 };
 
