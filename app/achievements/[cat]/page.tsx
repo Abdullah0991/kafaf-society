@@ -17,8 +17,8 @@ const AchievementCategory = ({ params }: { params: { cat: string } }) => {
                         <h1 className='text-center text-3xl py-10'>لا توجــد نتـائـج</h1> :
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-2'>
                             {
-                                posts.map((post) => (
-                                    <div className='border rounded p-3'>
+                                posts.map((post, idx) => (
+                                    <div className='border rounded p-3' key={idx}>
                                         {MATCH_URL_YOUTUBE.test(post.media) ?
                                             <YTPlayer
                                                 url={post.media}

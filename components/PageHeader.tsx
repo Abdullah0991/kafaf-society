@@ -15,7 +15,7 @@ const PageHeader = ({ title, images, noCarousel = false }: PageHeaderProps) => {
             </div>
             {
                 !noCarousel &&
-                <div className='h-80 bg-gray-100 p-2 md:py-3 md:px-5 flex justify-center'>
+                <div className='h-64 md:h-80 bg-gray-100 p-2 md:py-3 md:px-5 flex justify-center'>
                     <Carousel images={images ?? []} />
                 </div>
             }

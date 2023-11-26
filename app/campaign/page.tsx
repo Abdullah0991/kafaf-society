@@ -4,10 +4,16 @@ import YTPlayer from "@/components/YTPlayer";
 import { CAMPAIGNS, MATCH_URL_YOUTUBE } from "@/constants";
 import PageHeader from "@/components/PageHeader";
 
+const carousel = [
+    '/campaign/img_1.jpeg',
+    '/campaign/img_2.jpeg',
+    '/campaign/img_3.jpeg',
+];
+
 const Campaign = () => {
     return (
         <>
-            <PageHeader title='الحملات' />
+            <PageHeader title='الحملات' images={carousel} />
             <div className='max-container padding-container pb-20 pt-6'>
                 {
                     (!CAMPAIGNS || !CAMPAIGNS.length) ?

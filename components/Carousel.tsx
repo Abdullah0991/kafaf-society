@@ -83,15 +83,15 @@ const Carousel = ({ images, showPosition = false, timerDelay = 2000 }: CarouselP
                 </div>
             </div>
 
-            <div className="relative h-full" style={{ width: '30rem' }}>
+            {/*<div className="relative h-80 w-72">*/}
                 <Image
                     src={images[currentIndex]}
                     alt="image"
                     className="rounded-sm"
-                    fill
-                    objectFit='fill'
+                    width={450}
+                    height={320}
                 />
-            </div>
+            {/*</div>*/}
         </div>
     );
 };
