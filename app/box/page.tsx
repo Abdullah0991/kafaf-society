@@ -1,17 +1,17 @@
 import React from 'react';
 import CaseDisplay from "@/components/CaseDisplay";
+import { currFormatter } from "@/constants";
 
 const Box = () => {
     return (
         <>
             <section className='max-container padding-container min-h-screen'>
-                <div className='py-10'>
+                <div className='py-6 md:py-10'>
                     <h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>
-                    <div className='mt-10 flex flex-col md:flex-row items-center gap-5'>
-                        <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
-                        <div className='text-4xl'>
-                            <span className='text-green-600'>4056 $</span>&nbsp;|&nbsp;
-                            <span className='text-orange-600'>46300 ₺</span>
+                    <div className='mt-10 flex flex-col lg:flex-row items-center gap-5'>
+                        <div className='flex flex-col md:flex-row gap-3 items-center'>
+                            <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
+                            <span className='text-4xl text-green-600'>{currFormatter(4056)}</span>
                         </div>
                         <span className='hidden flex-grow md:block' />
                         <div className='flex gap-3'>
@@ -21,10 +21,10 @@ const Box = () => {
                     </div>
                 </div>
                 <div className='border bg-gray-20 mb-6' />
-                <div className='flex flex-wrap gap-10 justify-center md:justify-between'>
-                    <BoxCounter label={'صندوق المحلات'} value1={'256'} value2={'13500'} />
-                    <BoxCounter label={'صندوق المولات'} value1={'2500'} value2={'30000'} />
-                    <BoxCounter label={'صندوق الجامعة'} value1={'1300'} value2={'2800'} />
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10'>
+                    <BoxCounter label={'صندوق المحلات'} value1={256} />
+                    <BoxCounter label={'صندوق المولات'} value1={2500} />
+                    <BoxCounter label={'صندوق الجامعة'} value1={1300} />
                 </div>
 
                 <a
@@ -50,14 +50,14 @@ const Box = () => {
     );
 };
 
-const BoxCounter = ({ label, value1, value2 }: { label: string, value1: string, value2: string }) => {
+const BoxCounter = ({ label, value1 }: { label: string, value1: number }) => {
     return (
         <div
-            className='flex flex-col items-center gap-4 rounded-3xl border-4 border-dashed flex-1 md:min-w-[300px] py-4 px-6 md:flex-1'>
+            className='flex flex-col items-center gap-4 rounded-3xl border-4 border-dashed flex-1 md:min-w-[300px] py-4 px-6 md:flex-grow'>
             <p className='text-2xl'>{label}</p>
             <div>
-                <p className='text-center text-3xl text-green-600'>{value1} $</p>
-                <p className='text-center text-3xl text-orange-600'>{value2} ₺</p>
+                <p className='text-center text-3xl text-green-600'>{currFormatter(value1)}</p>
+                {/*<p className='text-center text-3xl text-orange-600'>{value2} ₺</p>*/}
             </div>
         </div>
     );

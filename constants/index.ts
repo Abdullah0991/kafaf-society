@@ -67,12 +67,19 @@ export const FOOTER_CONTACT_INFO = {
     ]
 }
 
-export const ACHIEVEMENTS: { [p: string]: { title: string, posts: { title: string, media: string }[] } } = {
+type ACHIEVEMENTS_DATA = { title: string, posts: { title: string, media: string }[], carousel:string[] };
+export const ACHIEVEMENTS: { [p: string]: ACHIEVEMENTS_DATA } = {
     medical: {
         title: 'القسم الطبي',
         posts: [
             { title: '135 عملية جراحية رحلة علاج الشاب مجد', media: 'https://youtu.be/hJ_NRNcN1eg' },
             { title: 'انب من عمل قسم التغذية في جمعية كفاف شمال حلب', media: 'https://youtu.be/tQNWUk-3f70' },
+        ],
+        carousel: [
+            '/medical/img_1.jpeg',
+            '/medical/img_2.jpeg',
+            '/medical/img_3.jpeg',
+            '/medical/img_4.jpg',
         ]
     },
     activities: {
@@ -84,26 +91,53 @@ export const ACHIEVEMENTS: { [p: string]: { title: string, posts: { title: strin
             { title: 'في عيد العمال', media: 'https://youtu.be/kcF_zOT7_8s' },
             { title: 'في ذكرى اليوم العالمي لليتيم', media: 'https://youtu.be/pD-87yW3SXc' },
             { title: 'فرحتكم عيدنا', media: 'https://youtu.be/1enbzjZ0S7E' },
+        ],
+        carousel: [
+            '/activity/img_1.jpeg',
+            '/activity/img_2.jpeg',
+            '/activity/img_3.jpeg',
+            '/activity/img_4.jpeg',
+            '/activity/img_5.jpeg',
         ]
     },
     special: {
         title: 'قسم الحالات الخاصة',
-        posts: []
+        posts: [],
+        carousel: [
+            '/special/img_1.jpeg',
+            '/special/img_2.jpeg',
+        ]
     },
     camps: {
         title: 'المخيمات',
         posts: [
             { title: 'البنات سكر نبات', media: 'https://youtu.be/_zGkYs9O08g' },
             { title: 'الاستجابة الطارئة لعائلة مهجرة شمال حلب', media: 'https://youtu.be/kurWI_oUVj4' },
+        ],
+        carousel: [
+            '/camps/img_1.jpeg',
+            '/camps/img_2.jpeg',
+            '/camps/img_3.jpeg',
         ]
     },
     education: {
         title: 'البرامج والتدريبات التعليمية',
-        posts: []
+        posts: [],
+        carousel: [
+            '/education/img_1.jpeg',
+            '/education/img_2.jpeg',
+            '/education/img_3.jpeg',
+        ]
     },
     clothes: {
         title: 'صالة الألبسة',
-        posts: []
+        posts: [],
+        carousel: [
+            '/clothes/img_1.jpeg',
+            '/clothes/img_2.jpeg',
+            '/clothes/img_3.jpeg',
+            '/clothes/img_4.jpeg',
+        ]
     },
 }
 
@@ -146,3 +180,21 @@ export const NEWS: { title: string, date: Date, content: string, media?: string 
         content: 'Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4'
     }
 ];
+
+export const currFormatter = (num: number): string => {
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+    });
+
+    return USDollar.format(num);
+}
+
+export const numFormatter = (num: number): string => {
+    let numberFormatter = new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0
+    });
+
+    return numberFormatter.format(num);
+}

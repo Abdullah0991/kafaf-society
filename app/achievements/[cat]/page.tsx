@@ -10,7 +10,7 @@ const AchievementCategory = ({ params }: { params: { cat: string } }) => {
 
     return (
         <>
-            <PageHeader title={category.title} />
+            <PageHeader title={category.title} images={category.carousel} />
             <div className='max-container padding-container pb-20 pt-6'>
                 {
                     (!posts || !posts.length) ?

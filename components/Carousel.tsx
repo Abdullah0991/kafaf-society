@@ -10,11 +10,11 @@ const imagesStore = [
 ]
 
 type CarouselProps = {
-    images?: string[];
+    images: string[];
     showPosition?: boolean;
     timerDelay?: number;
 }
-const Carousel = ({ images = imagesStore, showPosition = false, timerDelay = 2000 }: CarouselProps) => {
+const Carousel = ({ images, showPosition = false, timerDelay = 2000 }: CarouselProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(

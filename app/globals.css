@@ -125,7 +125,11 @@
 
     /* Hero */
     .hero-map {
-        @apply absolute right-0 top-0 h-screen w-screen bg-kefaf-bg bg-cover bg-center;
+        @apply absolute right-0 top-0 h-60 md:h-64 w-screen bg-bg-main bg-cover bg-center;
+    }
+
+    .hero-counter {
+        @apply relative rounded-3xl shadow-2xl p-6 my-8 xl:mt-8 bg-gradient-to-b from-emerald-500 to-lime-400;
     }
 
     /* Camp */
