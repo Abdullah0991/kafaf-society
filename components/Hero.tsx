@@ -1,8 +1,9 @@
 import React from 'react';
-import { APP_TITLE, HERO_SUB_TITLE, numFormatter } from "@/constants";
+import { APP_TITLE, HERO_SUB_TITLE, numFormatter, STATS } from "@/constants";
 import YTPlayer from "@/components/YTPlayer";
 
 const Hero = () => {
+    const total = STATS.reduce((acc, curVal) => acc + curVal.count, 0);
     return (
         <>
             <section className='max-container padding-container min-h-[calc(100dvh-80px)]'>
@@ -17,15 +18,15 @@ const Hero = () => {
                         <p className='text-white text-2xl lg:text-3xl whitespace-nowrap'>
                             عدد المستفيدين الكلي
                         </p>
-                        <p className='text-green-800 text-4xl lg:text-5xl'>{numFormatter(405000)}</p>
+                        <p className='text-green-800 text-4xl lg:text-5xl'>{numFormatter(total)}</p>
                     </div>
                 </div>
-                <div className='relative grid md:grid-cols-5 gap-5 mt-10 xl:mt-20'>
-                    <InfoCard label='حالة طبية' value={4000} />
-                    <InfoCard label='طالب' value={10000} />
-                    <InfoCard label='حملة' value={36} />
-                    <InfoCard label='حالة إنسانية' value={48} />
-                    <InfoCard label='صالة الالبسة' value={8980} />
+                <div className='relative grid md:grid-cols-3 xl:grid-cols-6 gap-5 mt-10 xl:mt-20'>
+                    {
+                        STATS.map((state, idx) => (
+                            <InfoCard label={state.name} value={state.count} key={idx} />
+                        ))
+                    }
                 </div>
             </section>
             <section
@@ -53,10 +54,10 @@ const Hero = () => {
 
 const InfoCard = ({ label, value }: { label: string, value: number }) => {
     return (
-        <div className='relative flex-col rounded-3xl border-4 border-dashed flex-1 p-4 md:p-6'>
-            <div className='flex flex-row md:flex-col gap-5 justify-between md:items-center'>
+        <div className='relative flex-col rounded-3xl border-4 border-dashed flex-1 p-4'>
+            <div className='flex flex-row md:flex-col gap-5 justify-between items-center'>
                 <p className='text-3xl lg:text-4xl text-center flex-1'>{numFormatter(value)}</p>
-                <p className='text-gray-400 text-2xl lg:text-2xl text-center whitespace-nowrap flex-1'>{label}</p>
+                <p className='text-gray-400 text-xl text-center flex-1'>{label}</p>
             </div>
         </div>
     )

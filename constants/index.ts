@@ -181,6 +181,33 @@ export const NEWS: { title: string, date: Date, content: string, media?: string 
     }
 ];
 
+export const STATS = [
+    {
+        name: 'البرنامج الطبي',
+        count: 23704
+    },
+    {
+        name: 'الأنشطة والحالات الخاصة',
+        count: 54931
+    },
+    {
+        name: 'برنامج سوء التغذية',
+        count: 3000
+    },
+    {
+        name: 'الدعم الميداني',
+        count: 61881
+    },
+    {
+        name: 'صالة الالبسة',
+        count: 32422
+    },
+    {
+        name: 'برنامج الاستجابة الطارئة',
+        count: 99892
+    }
+]
+
 export const currFormatter = (num: number): string => {
     let USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
