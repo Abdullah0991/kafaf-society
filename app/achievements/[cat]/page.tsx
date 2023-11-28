@@ -4,6 +4,10 @@ import Image from "next/image";
 import YTPlayer from "@/components/YTPlayer";
 import PageHeader from "@/components/PageHeader";
 
+export async function generateStaticParams() {
+    return Object.keys(ACHIEVEMENTS).map(key => ({ cat: key }));
+}
+
 const AchievementCategory = ({ params }: { params: { cat: string } }) => {
     const category = ACHIEVEMENTS[params.cat];
     const posts = category?.posts;

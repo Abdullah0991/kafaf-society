@@ -3,6 +3,10 @@ import Image from "next/image";
 import BackButton from "@/components/BackButton";
 import { CAMPAIGNS } from "@/constants";
 
+export async function generateStaticParams() {
+    return CAMPAIGNS.map((c) => ({ id: c.id }));
+}
+
 const CampaignDetails = ({ params }: { params: { id: string } }) => {
     const campaign = CAMPAIGNS.find(x => x.id === params.id);
 
