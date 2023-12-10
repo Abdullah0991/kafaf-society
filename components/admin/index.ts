@@ -1,5 +1,6 @@
 export { NewsEdit, NewsList, NewsCreate } from './NewsAdmin';
 export { CampaignsList, CampaignsCreate, CampaignEdit } from './CampaignsAdmin';
+export { StatisticsList, StatisticsCreate, StatisticsEdit } from './StatisticsAdmin';
 
 export const generateImagePreview = (value: any) => {
     return !!value ?

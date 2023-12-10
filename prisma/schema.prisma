@@ -32,3 +32,16 @@ model Campaigns {
 
   @@map(name: "campaigns")
 }
+
+model Statistics {
+  id        String   @id @default(uuid())
+  medical   Int      @default(0)
+  food      Int      @default(0)
+  activity  Int      @default(0)
+  logistic  Int      @default(0)
+  clothes   Int      @default(0)
+  emergency Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map(name: "statistics")
+}

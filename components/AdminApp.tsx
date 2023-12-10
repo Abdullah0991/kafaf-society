@@ -1,6 +1,15 @@
 "use client"; // only needed if you choose App Router
 import { Admin, defaultTheme, RaThemeOptions, Resource } from "react-admin";
-import { CampaignEdit, CampaignsCreate, CampaignsList, NewsCreate, NewsEdit, NewsList } from "@/components/admin";
+import {
+    CampaignEdit,
+    CampaignsCreate,
+    CampaignsList,
+    NewsCreate,
+    NewsEdit,
+    NewsList,
+    StatisticsCreate,
+    StatisticsList
+} from "@/components/admin";
 import arabicMessages from "@/lib/react-admin-ar";
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import { TranslationMessages } from "ra-core";
@@ -11,6 +20,8 @@ import { prefixer } from 'stylis';
 import { adminDataProvider } from "@/lib/admin-data-provider";
 import CampaignIcon from '@mui/icons-material/Campaign';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import { StatisticsEdit } from "@/components/admin/StatisticsAdmin";
 
 const messages: Record<string, TranslationMessages> = {
     'ar': arabicMessages,
@@ -40,13 +51,15 @@ const AdminApp = () => (
             list={ListGuesser}
             edit={EditGuesser}
             recordRepresentation="name"
-        />
-        <Resource
-            name="campaigns"
-            list={ListGuesser}
-            edit={EditGuesser}
-            recordRepresentation="title"
         />*/}
+            <Resource
+                name="statistics"
+                list={StatisticsList}
+                edit={StatisticsEdit}
+                create={StatisticsCreate}
+                icon={BarChartIcon}
+                options={{ label: 'الإحصائيات' }}
+            />
             <Resource
                 name="campaigns"
                 list={CampaignsList}

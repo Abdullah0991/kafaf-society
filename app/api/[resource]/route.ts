@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma"; // <= Your prisma client instance
 import { NextResponse } from "next/server";
 
 export function generateStaticParams() {
-    return ['news', 'campaigns', 'files'].map((x) => ({ resource: x }));
+    return ['news', 'campaigns', 'files', 'statistics'].map((x) => ({ resource: x }));
 }
 
 const handler = async (req: Request) => {
