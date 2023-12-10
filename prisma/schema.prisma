@@ -20,3 +20,15 @@ model News {
 
   @@map(name: "news")
 }
+
+model Campaigns {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  target      Int      @default(0)
+  cash        Int      @default(0)
+  image       String?
+  createdAt   DateTime @default(now())
+
+  @@map(name: "campaigns")
+}

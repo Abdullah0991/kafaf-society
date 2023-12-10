@@ -7,10 +7,13 @@ import {
     ImageField,
     ImageInput,
     List,
+    required,
     SimpleForm,
     TextField,
-    TextInput
+    TextInput,
+    useRecordContext
 } from 'react-admin';
+import { generateImagePreview } from "./index";
 
 export const NewsList = () => (
     <List>
@@ -23,13 +26,37 @@ export const NewsList = () => (
     </List>
 );
 
+const NewsTitle = () => {
+    const record = useRecordContext();
+    return <span>الخبر {record ? `"${record.title}"` : ''}</span>;
+};
+
 export const NewsEdit = () => (
-    <Edit>
+    <Edit title={<NewsTitle />}>
         <SimpleForm>
-            <TextInput name="title" source="title" label="العنوان" />
-            <TextInput name="description" source="description" label="الوصف" />
-            <DateInput name="date" source="date" label='التاريخ' parse={value => new Date(value).toISOString()} />
-            <ImageInput name='image' source='image' label='صورة'>
+            <TextInput
+                name="title"
+                source="title"
+                label="العنوان"
+                validate={required()}
+                fullWidth
+            />
+            <TextInput
+                name="description"
+                source="description"
+                label="الوصف"
+                rows={2}
+                validate={required()}
+                multiline
+                fullWidth
+            />
+            <DateInput
+                name="date"
+                source="date"
+                label='التاريخ'
+                parse={value => new Date(value).toISOString()}
+            />
+            <ImageInput name='image' source='image' label='صورة' format={generateImagePreview}>
                 <ImageField source="src" title="title" />
             </ImageInput>
         </SimpleForm>
@@ -38,10 +65,29 @@ export const NewsEdit = () => (
 
 export const NewsCreate = () => (
     <Create>
-        <SimpleForm>
-            <TextInput name="title" source="title" label="العنوان" />
-            <TextInput name="description" source="description" label="الوصف" />
-            <DateInput name="date" source="date" label="تاريخ الخبر" parse={value => new Date(value).toISOString()} />
+        <SimpleForm defaultValues={{ date: new Date() }}>
+            <TextInput
+                name="title"
+                source="title"
+                label="العنوان"
+                validate={required()}
+                fullWidth
+            />
+            <TextInput
+                name="description"
+                source="description"
+                label="الوصف"
+                rows={2}
+                validate={required()}
+                multiline
+                fullWidth
+            />
+            <DateInput
+                name="date"
+                source="date"
+                label="تاريخ الخبر"
+                parse={value => new Date(value).toISOString()}
+            />
             <ImageInput name='image' source='image' label='صورة'>
                 <ImageField source="src" title="title" />
             </ImageInput>

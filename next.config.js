@@ -5,8 +5,8 @@ const nextConfig = {
         domains: ['unsplash.it']
     },
     distDir: 'build',
-    output: 'export',
-    trailingSlash: true
+    // output: 'export',
+    // trailingSlash: true
 }
 
 module.exports = nextConfig
