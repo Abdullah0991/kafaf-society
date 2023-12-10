@@ -1,0 +1,1 @@
+export { NewsEdit, NewsList, NewsCreate } from './NewsAdmin';

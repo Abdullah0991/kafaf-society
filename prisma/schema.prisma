@@ -15,5 +15,8 @@ model News {
   title       String
   description String
   date        DateTime
+  image       String?
   createdAt   DateTime @default(now())
+
+  @@map(name: "news")
 }
