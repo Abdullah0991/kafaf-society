@@ -31,10 +31,6 @@ const Services = () => {
                         }
                     </ul>
                 </div>
-
-                <div className='flex flex-1  justify-center'>
-                    {/*<Image src='/app_logo.png' alt='services' width={400} height={440} />*/}
-                </div>
             </div>
         </section>
     );
