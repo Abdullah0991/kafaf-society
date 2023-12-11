@@ -12,7 +12,10 @@ import {
     ServicesList,
     StatisticsCreate,
     StatisticsEdit,
-    StatisticsList
+    StatisticsList,
+    TasksCreate,
+    TasksEdit,
+    TasksList
 } from "@/components/admin";
 import arabicMessages from "@/lib/react-admin-ar";
 import polyglotI18nProvider from 'ra-i18n-polyglot';
@@ -26,6 +29,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CategoryIcon from '@mui/icons-material/Category';
+import AccessibleIcon from '@mui/icons-material/Accessible';
 
 const messages: Record<string, TranslationMessages> = {
     'ar': arabicMessages,
@@ -74,6 +78,15 @@ const AdminApp = () => (
                 create={CampaignsCreate}
                 icon={CampaignIcon}
                 options={{ label: 'الحملات' }}
+                recordRepresentation="title"
+            />
+            <Resource
+                name="tasks"
+                list={TasksList}
+                edit={TasksEdit}
+                create={TasksCreate}
+                icon={AccessibleIcon}
+                options={{ label: 'الحالات الخاصة' }}
                 recordRepresentation="title"
             />
             <Resource

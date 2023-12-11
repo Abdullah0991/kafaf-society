@@ -10,7 +10,8 @@ import {
     SimpleForm,
     TextField,
     TextInput,
-    UrlField
+    UrlField,
+    useRecordContext
 } from 'react-admin';
 import { Services } from "@prisma/client";
 
@@ -55,8 +56,15 @@ export const ServicesCreate = () => (
     </Create>
 );
 
+const ServiceTitle = () => {
+    const record = useRecordContext();
+    return <span>
+        الخدمة {record ? `"${record.title}" | ${ServiceCategories.find(x => x.id === record.type)?.name}` : ''}
+    </span>;
+};
+
 export const ServicesEdit = () => (
-    <Edit>
+    <Edit title={<ServiceTitle />}>
         <SimpleForm>
             <SelectInput name="type" source="type" label="القسم" choices={ServiceCategories} validate={required()}
                          fullWidth />

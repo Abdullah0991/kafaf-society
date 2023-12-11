@@ -55,3 +55,16 @@ model Services {
 
   @@map(name: "services")
 }
+
+model Tasks {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  target      Int      @default(0)
+  cash        Int      @default(0)
+  image       String?
+  mediaUrl    String?
+  createdAt   DateTime @default(now())
+
+  @@map(name: "tasks")
+}

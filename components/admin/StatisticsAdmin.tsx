@@ -9,7 +9,8 @@ import {
     NumberField,
     NumberInput,
     required,
-    SimpleForm
+    SimpleForm,
+    useRecordContext
 } from "react-admin";
 import { Statistics } from "@prisma/client";
 
@@ -93,8 +94,13 @@ export const StatisticsCreate = () => (
     </Create>
 );
 
+const StatisticsTitle = () => {
+    const record = useRecordContext();
+    return <span>إحصائيات تاريخ {record ? `"${new Date(record.createdAt).toLocaleDateString()}"` : ''}</span>;
+};
+
 export const StatisticsEdit = () => (
-    <Edit>
+    <Edit title={<StatisticsTitle />}>
         <SimpleForm>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', width: '100%' }}>
                 <NumberInput
