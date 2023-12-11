@@ -14,15 +14,7 @@ import {
     useRecordContext
 } from 'react-admin';
 import { Services } from "@prisma/client";
-
-const ServiceCategories: { id: number, name: string }[] = [
-    { id: 0, name: 'القسم الطبي' },
-    { id: 1, name: 'قسم الأنشطة' },
-    { id: 2, name: 'قسم المخيمات' },
-    { id: 3, name: 'قسم الألبسة' },
-    { id: 4, name: 'القسم التعليمي' },
-    { id: 5, name: 'قسم الحالات الخاصة' },
-];
+import { ServiceCategories } from "@/constants";
 
 const postFilters = [
     <SearchInput source="title" alwaysOn />,

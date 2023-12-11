@@ -49,4 +49,3 @@ const route = async (req: Request) => {
 };
 
 export { route as GET, route as POST };
-export const dynamic = "force-static";

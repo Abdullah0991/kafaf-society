@@ -1,9 +1,21 @@
 import React from 'react';
 import { APP_TITLE, HERO_SUB_TITLE, numFormatter, STATS } from "@/constants";
 import YTPlayer from "@/components/YTPlayer";
+import prisma from "@/lib/prisma";
+import { Statistics } from ".prisma/client";
 
-const Hero = () => {
-    const total = STATS.reduce((acc, curVal) => acc + curVal.count, 0);
+const Hero = async () => {
+    const stats = await prisma.statistics.findFirst() || {
+        emergency: 0,
+        medical: 0,
+        clothes: 0,
+        food: 0,
+        logistic: 0,
+        activity: 0
+    } as Statistics;
+
+    const total = stats.activity + stats.medical + stats.emergency + stats.clothes + stats.food + stats.logistic;
+
     return (
         <>
             <section className='max-container padding-container min-h-[calc(100dvh-80px)]'>
@@ -23,8 +35,8 @@ const Hero = () => {
                 </div>
                 <div className='relative grid md:grid-cols-3 xl:grid-cols-6 gap-5 mt-10 xl:mt-20'>
                     {
-                        STATS.map((state, idx) => (
-                            <InfoCard label={state.name} value={state.count} key={idx} />
+                        STATS.map((st) => (
+                            <InfoCard label={st.name} value={Number(stats[st.key as keyof Statistics])} key={st.key} />
                         ))
                     }
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { currFormatter } from "@/constants";
 
 type ProgressBarProps = {
     max: number;
@@ -18,8 +19,8 @@ const ProgressBar = ({ max, current, label, className = '' }: ProgressBarProps) 
                     &nbsp;
                     ({`${Math.round((current * 100) / max)} %`})
                 </h4>
-                <span className="px-2 py-1 rounded-lg bg-lime-50 text-emerald-500 text-xs">
-                    {current} / {max}
+                <span className="px-2 py-1 rounded-lg bg-lime-50 text-emerald-500 text-xs lg:text-sm">
+                    {currFormatter(current)} / {currFormatter(max)}
                 </span>
             </div>
             <div className="overflow-hidden bg-emerald-50 h-1.5 rounded-full w-full">

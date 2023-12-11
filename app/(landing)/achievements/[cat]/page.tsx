@@ -1,20 +1,28 @@
 import React from 'react';
-import { ACHIEVEMENTS, MATCH_URL_YOUTUBE } from "@/constants";
+import { MATCH_URL_YOUTUBE, ServiceCategories } from "@/constants";
 import Image from "next/image";
 import YTPlayer from "@/components/YTPlayer";
 import PageHeader from "@/components/PageHeader";
+import prisma from "@/lib/prisma";
+import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
+/*export async function generateStaticParams() {
     return Object.keys(ACHIEVEMENTS).map(key => ({ cat: key }));
-}
+}*/
 
-const AchievementCategory = ({ params }: { params: { cat: string } }) => {
-    const category = ACHIEVEMENTS[params.cat];
-    const posts = category?.posts;
+const AchievementCategory = async ({ params }: { params: { cat: string } }) => {
+    const category = ServiceCategories.find(x => x.key === params.cat);
+    if (!category) {
+        return notFound();
+    }
+
+    const posts = await prisma.services.findMany({
+        where: { type: category.id }
+    });
 
     return (
         <>
-            <PageHeader title={category.title} images={category.carousel} />
+            <PageHeader title={category.name} images={category.carousel} />
             <div className='max-container padding-container pb-20 pt-6'>
                 {
                     (!posts || !posts.length) ?
@@ -23,12 +31,17 @@ const AchievementCategory = ({ params }: { params: { cat: string } }) => {
                             {
                                 posts.map((post, idx) => (
                                     <div className='border rounded p-3' key={idx}>
-                                        {MATCH_URL_YOUTUBE.test(post.media) ?
+                                        {MATCH_URL_YOUTUBE.test(post.mediaUrl) ?
                                             <YTPlayer
-                                                url={post.media}
+                                                url={post.mediaUrl}
                                                 title={post.title}
                                             /> :
-                                            <Image src={post.media} alt={post.title} width={560} height={100} />}
+                                            <Image
+                                                src={post.mediaUrl ? `/api/files?n=${post.mediaUrl}` : '/no_image.png'}
+                                                alt={post.title}
+                                                width={560}
+                                                height={100}
+                                            />}
                                         <p className='pt-4 text-xl text-center'>{post.title}</p>
                                     </div>
                                 ))

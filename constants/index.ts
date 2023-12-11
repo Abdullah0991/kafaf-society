@@ -8,7 +8,7 @@ type NavBarItem = {
 }
 export const NAV_LINKS: NavBarItem[] = [
     { href: '/', key: 'home', label: 'الرئيسية', children: [] },
-    { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
+    // { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
     { href: '/campaign', key: 'campaigns', label: 'الحملات', children: [] },
     {
         href: '/achievements', key: 'achievements', label: 'الأقسام', children: [
@@ -67,8 +67,75 @@ export const FOOTER_CONTACT_INFO = {
     ]
 }
 
-type ACHIEVEMENTS_DATA = { title: string, posts: { title: string, media: string }[], carousel:string[] };
-export const ACHIEVEMENTS: { [p: string]: ACHIEVEMENTS_DATA } = {
+// type ACHIEVEMENTS_DATA = { title: string, posts: { title: string, media: string }[], carousel: string[] };
+
+export const ServiceCategories: { id: number, name: string, key: string, carousel: string[] }[] = [
+    {
+        id: 0,
+        name: 'القسم الطبي',
+        key: 'medical',
+        carousel: [
+            '/medical/img_1.jpeg',
+            '/medical/img_2.jpeg',
+            '/medical/img_3.jpeg',
+            '/medical/img_4.jpg',
+        ]
+    },
+    {
+        id: 1,
+        name: 'قسم الأنشطة',
+        key: 'activities',
+        carousel: [
+            '/activity/img_1.jpeg',
+            '/activity/img_2.jpeg',
+            '/activity/img_3.jpeg',
+            '/activity/img_4.jpeg',
+            '/activity/img_5.jpeg',
+        ]
+    },
+    {
+        id: 2,
+        name: 'قسم المخيمات',
+        key: 'camps',
+        carousel: [
+            '/camps/img_1.jpeg',
+            '/camps/img_2.jpeg',
+            '/camps/img_3.jpeg',
+        ]
+    },
+    {
+        id: 3,
+        name: 'قسم الألبسة',
+        key: 'clothes',
+        carousel: [
+            '/clothes/img_1.jpeg',
+            '/clothes/img_2.jpeg',
+            '/clothes/img_3.jpeg',
+            '/clothes/img_4.jpeg',
+        ]
+    },
+    {
+        id: 4,
+        name: 'القسم التعليمي',
+        key: 'education',
+        carousel: [
+            '/education/img_1.jpeg',
+            '/education/img_2.jpeg',
+            '/education/img_3.jpeg',
+        ]
+    },
+    {
+        id: 5,
+        name: 'قسم الحالات الخاصة',
+        key: 'special',
+        carousel: [
+            '/special/img_1.jpeg',
+            '/special/img_2.jpeg',
+        ]
+    },
+];
+
+/*export const ACHIEVEMENTS: { [p: string]: ACHIEVEMENTS_DATA } = {
     medical: {
         title: 'القسم الطبي',
         posts: [
@@ -139,7 +206,7 @@ export const ACHIEVEMENTS: { [p: string]: ACHIEVEMENTS_DATA } = {
             '/clothes/img_4.jpeg',
         ]
     },
-}
+}*/
 
 export const CAMPAIGNS: { id: string, title: string, media: string, content: string }[] = [
     {
@@ -184,27 +251,27 @@ export const NEWS: { title: string, date: Date, content: string, media?: string 
 export const STATS = [
     {
         name: 'البرنامج الطبي',
-        count: 23704
+        key: 'medical'
     },
     {
         name: 'الأنشطة والحالات الخاصة',
-        count: 54931
+        key: 'activity'
     },
     {
         name: 'برنامج سوء التغذية',
-        count: 3000
+        key: 'food'
     },
     {
         name: 'الدعم الميداني',
-        count: 61881
+        key: 'logistic'
     },
     {
         name: 'صالة الالبسة',
-        count: 32422
+        key: 'clothes'
     },
     {
         name: 'برنامج الاستجابة الطارئة',
-        count: 99892
+        key: 'emergency'
     }
 ]
 
