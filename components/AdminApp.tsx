@@ -7,7 +7,11 @@ import {
     NewsCreate,
     NewsEdit,
     NewsList,
+    ServicesCreate,
+    ServicesEdit,
+    ServicesList,
     StatisticsCreate,
+    StatisticsEdit,
     StatisticsList
 } from "@/components/admin";
 import arabicMessages from "@/lib/react-admin-ar";
@@ -21,7 +25,7 @@ import { adminDataProvider } from "@/lib/admin-data-provider";
 import CampaignIcon from '@mui/icons-material/Campaign';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import { StatisticsEdit } from "@/components/admin/StatisticsAdmin";
+import CategoryIcon from '@mui/icons-material/Category';
 
 const messages: Record<string, TranslationMessages> = {
     'ar': arabicMessages,
@@ -46,12 +50,6 @@ function RTL(props: any) {
 const AdminApp = () => (
     <RTL>
         <Admin dataProvider={adminDataProvider} i18nProvider={i18nProvider} theme={theme}>
-            {/*<Resource
-            name="stats"
-            list={ListGuesser}
-            edit={EditGuesser}
-            recordRepresentation="name"
-        />*/}
             <Resource
                 name="statistics"
                 list={StatisticsList}
@@ -59,6 +57,15 @@ const AdminApp = () => (
                 create={StatisticsCreate}
                 icon={BarChartIcon}
                 options={{ label: 'الإحصائيات' }}
+            />
+            <Resource
+                name="services"
+                list={ServicesList}
+                edit={ServicesEdit}
+                create={ServicesCreate}
+                icon={CategoryIcon}
+                options={{ label: 'الخدمات' }}
+                recordRepresentation="title"
             />
             <Resource
                 name="campaigns"

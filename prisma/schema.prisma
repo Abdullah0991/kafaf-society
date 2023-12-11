@@ -45,3 +45,13 @@ model Statistics {
 
   @@map(name: "statistics")
 }
+
+model Services {
+  id          String  @id @default(uuid())
+  type        Int
+  title       String
+  description String?
+  mediaUrl    String
+
+  @@map(name: "services")
+}
