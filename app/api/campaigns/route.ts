@@ -1,8 +1,9 @@
-import { createHandler, defaultHandler, deleteHandler, updateHandler } from "ra-data-simple-prisma";
+import { createHandler, defaultHandler, deleteHandler, deleteManyHandler, updateHandler } from "ra-data-simple-prisma";
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { removeFile, uploadFile } from "@/lib/file-uploader";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 const route = async (req: Request) => {
     const body = await req.json();
@@ -14,10 +15,14 @@ const route = async (req: Request) => {
                 let base64Image = image.src.split(';base64,').pop();
                 body.params.data.image = await uploadFile(image.title, base64Image);
             }
+
             const result = await createHandler<Prisma.CampaignsCreateArgs>(
                 body,
                 prisma.campaigns
             );
+
+            revalidatePath('/campaigns');
+
             return NextResponse.json(result);
         }
         case "update": {
@@ -40,6 +45,9 @@ const route = async (req: Request) => {
                         settings: true,
                     },
                 });
+
+            revalidatePath('/campaigns');
+
             return NextResponse.json(result);
         }
         case "delete": {
@@ -47,13 +55,36 @@ const route = async (req: Request) => {
             if (image) {
                 await removeFile(image);
             }
+
             const result = await deleteHandler<Prisma.CampaignsDeleteArgs>(body, prisma.campaigns);
+
+            revalidatePath('/campaigns');
+
+            return NextResponse.json(result);
+        }
+        case "deleteMany": {
+            const { ids } = body.params;
+            const images = await prisma.campaigns.findMany({
+                where: { id: { in: ids } },
+                select: { image: true }
+            });
+
+            if (images && images.length) {
+                for (let i = 0; i < images.length; i++) {
+                    if (images[i].image) {
+                        await removeFile(images[i].image!);
+                    }
+                }
+            }
+
+            const result = await deleteManyHandler(body, prisma.campaigns);
+
+            revalidatePath('/campaigns');
+
             return NextResponse.json(result);
         }
         default: {
-            const result = await defaultHandler(body, prisma, {
-                getList: {}
-            });
+            const result = await defaultHandler(body, prisma);
             return NextResponse.json(result);
         }
     }

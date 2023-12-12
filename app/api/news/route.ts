@@ -1,15 +1,15 @@
-import { createHandler, defaultHandler, deleteHandler, updateHandler, } from "ra-data-simple-prisma";
+import { createHandler, defaultHandler, deleteHandler, deleteManyHandler, updateHandler } from "ra-data-simple-prisma";
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { removeFile, uploadFile } from "@/lib/file-uploader";
+import { revalidatePath } from "next/cache";
 
 const route = async (req: Request) => {
     const body = await req.json();
 
     switch (body.method) {
         case "create": {
-            console.log('body', body);
             const image = body.params.data.image;
             if (image && typeof image === 'object' && 'src' in image) {
                 let base64Image = image.src.split(';base64,').pop();
@@ -19,10 +19,12 @@ const route = async (req: Request) => {
                 body,
                 prisma.news
             );
+
+            revalidatePath('/news');
+
             return NextResponse.json(result);
         }
         case "update": {
-            console.log('body', body);
             const image = body.params.data.image;
             if (image && typeof image === 'object' && 'src' in image) {
                 let base64Image = image.src.split(';base64,').pop();
@@ -42,6 +44,9 @@ const route = async (req: Request) => {
                         settings: true,
                     },
                 });
+
+            revalidatePath('/news');
+
             return NextResponse.json(result);
         }
         case "delete": {
@@ -49,13 +54,36 @@ const route = async (req: Request) => {
             if (image) {
                 await removeFile(image);
             }
+
             const result = await deleteHandler<Prisma.NewsDeleteArgs>(body, prisma.news);
+
+            revalidatePath('/news');
+
+            return NextResponse.json(result);
+        }
+        case "deleteMany": {
+            const { ids } = body.params;
+            const images = await prisma.news.findMany({
+                where: { id: { in: ids } },
+                select: { image: true }
+            });
+
+            if (images && images.length) {
+                for (let i = 0; i < images.length; i++) {
+                    if (images[i].image) {
+                        await removeFile(images[i].image!);
+                    }
+                }
+            }
+
+            const result = await deleteManyHandler(body, prisma.news);
+
+            revalidatePath('/news');
+
             return NextResponse.json(result);
         }
         default: {
-            const result = await defaultHandler(body, prisma, {
-                getList: {}
-            });
+            const result = await defaultHandler(body, prisma);
             return NextResponse.json(result);
         }
     }

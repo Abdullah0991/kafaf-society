@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Achievements = () => {
+const Services = () => {
     return (
         <div>
             {/* TODO: Show Categories */}
@@ -8,4 +8,4 @@ const Achievements = () => {
     );
 };
 
-export default Achievements;
+export default Services;

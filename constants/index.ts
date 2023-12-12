@@ -9,15 +9,15 @@ type NavBarItem = {
 export const NAV_LINKS: NavBarItem[] = [
     { href: '/', key: 'home', label: 'الرئيسية', children: [] },
     // { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
-    { href: '/campaign', key: 'campaigns', label: 'الحملات', children: [] },
+    { href: '/campaigns', key: 'campaigns', label: 'الحملات', children: [] },
     {
-        href: '/achievements', key: 'achievements', label: 'الأقسام', children: [
-            { label: 'القسم الطبي', key: 'medical', href: '/achievements/medical' },
-            { label: 'قسم الأنشطة', key: 'activities', href: '/achievements/activities' },
-            { label: 'قسم الحالات الخاصة', key: 'special', href: '/achievements/special' },
-            { label: 'المخيمات', key: 'camps', href: '/achievements/camps' },
-            { label: 'البرامج والتدريبات التعليمية', key: 'education', href: '/achievements/education' },
-            { label: 'صالة الألبسة', key: 'clothes', href: '/achievements/clothes' },
+        href: '/services', key: 'services', label: 'الأقسام', children: [
+            { label: 'القسم الطبي', key: 'medical', href: '/services/medical' },
+            { label: 'قسم الأنشطة', key: 'activities', href: '/services/activities' },
+            { label: 'قسم الحالات الخاصة', key: 'special', href: '/services/special' },
+            { label: 'المخيمات', key: 'camps', href: '/services/camps' },
+            { label: 'البرامج والتدريبات التعليمية', key: 'education', href: '/services/education' },
+            { label: 'صالة الألبسة', key: 'clothes', href: '/services/clothes' },
         ]
     },
     { href: '/news', key: 'news', label: 'آخر الأخبار', children: [] },
@@ -34,17 +34,17 @@ export const HERO_SUB_TITLE = `
 `;
 
 export const SERVICES = [
-    { title: 'القسم الطبي', key: 'medical', href: '/achievements/medical', icon: '/medical.png' },
-    { title: 'قسم الأنشطة', key: 'activities', href: '/achievements/activities', icon: '/activities.png' },
-    { title: 'قسم الحالات الخاصة', key: 'special', href: '/achievements/special', icon: '/special.png' },
-    { title: 'المخيمات', key: 'camps', href: '/achievements/camps', icon: '/camps.png' },
+    { title: 'القسم الطبي', key: 'medical', href: '/services/medical', icon: '/medical.png' },
+    { title: 'قسم الأنشطة', key: 'activities', href: '/services/activities', icon: '/activities.png' },
+    { title: 'قسم الحالات الخاصة', key: 'special', href: '/services/special', icon: '/special.png' },
+    { title: 'المخيمات', key: 'camps', href: '/services/camps', icon: '/camps.png' },
     {
         title: 'البرامج والتدريبات التعليمية',
         key: 'education',
-        href: '/achievements/education',
+        href: '/services/education',
         icon: '/education.png'
     },
-    { title: 'صالة الألبسة', key: 'clothes', href: '/achievements/clothes', icon: '/clothes.png' },
+    { title: 'صالة الألبسة', key: 'clothes', href: '/services/clothes', icon: '/clothes.png' },
 ];
 
 export const FOOTER_LINKS = [
@@ -208,7 +208,7 @@ export const ServiceCategories: { id: number, name: string, key: string, carouse
     },
 }*/
 
-export const CAMPAIGNS: { id: string, title: string, media: string, content: string }[] = [
+/*export const CAMPAIGNS: { id: string, title: string, media: string, content: string }[] = [
     {
         id: '1234',
         title: 'حملة مساعدة متضرري الزلزال',
@@ -223,9 +223,9 @@ export const CAMPAIGNS: { id: string, title: string, media: string, content: str
         title: 'حملة تنظيف شاطئ بحيرة ميدنكي',
         media: '/bg_1.jpg'
     }
-];
+];*/
 
-export const NEWS: { title: string, date: Date, content: string, media?: string }[] = [
+/*export const NEWS: { title: string, date: Date, content: string, media?: string }[] = [
     {
         title: 'اكتمال مشروع إنارة مخيف كفاف 2',
         date: new Date(),
@@ -246,7 +246,7 @@ export const NEWS: { title: string, date: Date, content: string, media?: string 
         date: new Date(),
         content: 'Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4'
     }
-];
+];*/
 
 export const STATS = [
     {

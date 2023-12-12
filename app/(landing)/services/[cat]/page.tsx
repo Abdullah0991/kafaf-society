@@ -11,7 +11,7 @@ import { getImagePath } from "@/lib/helpers";
     return Object.keys(ACHIEVEMENTS).map(key => ({ cat: key }));
 }*/
 
-const AchievementCategory = async ({ params }: { params: { cat: string } }) => {
+const ServiceCategory = async ({ params }: { params: { cat: string } }) => {
     const category = ServiceCategories.find(x => x.key === params.cat);
     if (!category) {
         return notFound();
@@ -54,4 +54,4 @@ const AchievementCategory = async ({ params }: { params: { cat: string } }) => {
     );
 };
 
-export default AchievementCategory;
+export default ServiceCategory;

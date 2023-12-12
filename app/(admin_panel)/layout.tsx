@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from 'next'
 import { Changa } from "next/font/google";
+import './globals.css'
 
 const mainFont = Changa({ subsets: ['arabic', 'latin'] })
 

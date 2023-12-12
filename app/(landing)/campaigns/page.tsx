@@ -42,7 +42,7 @@ const Campaigns = async () => {
                                                     objectFit='cover'
                                                 />}
                                         </div>
-                                        <Link href={`/campaign/${camp.id}`}>
+                                        <Link href={`/campaigns/${camp.id}`}>
                                             <p className='pt-4 text-xl text-center'>{camp.title}</p>
                                         </Link>
                                     </div>
