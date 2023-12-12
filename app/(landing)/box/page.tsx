@@ -1,6 +1,6 @@
 import React from 'react';
 import CaseDisplay from "@/components/CaseDisplay";
-import { currFormatter } from "@/constants";
+import { currFormatter } from "@/lib/helpers";
 
 const Box = () => {
     return (

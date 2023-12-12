@@ -3,6 +3,7 @@ import Image from "next/image";
 import BackButton from "@/components/BackButton";
 import prisma from "@/lib/prisma";
 import ProgressBar from "@/components/ProgressBar";
+import { getImagePath } from "@/lib/helpers";
 
 /*export async function generateStaticParams() {
     return CAMPAIGNS.map((c) => ({ id: c.id }));
@@ -23,7 +24,7 @@ const CampaignDetails = async ({ params }: { params: { id: string } }) => {
             <div className='relative w-full h-[300px] border'>
                 <BackButton className='absolute -top-9' />
                 <Image
-                    src={campaign.image ? `/api/files?n=${campaign.image}` : '/no_image.png'}
+                    src={getImagePath(campaign.image)}
                     alt={campaign.title}
                     fill objectFit={'contain'}
                 />

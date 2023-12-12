@@ -2,7 +2,7 @@ import React from 'react';
 import Image from "next/image";
 import ProgressBar from "@/components/ProgressBar";
 import CircularProgressBar from "@/components/CircularProgressBar";
-import { currFormatter } from "@/constants";
+import { currFormatter } from "@/lib/helpers";
 
 type CaseDisplayProps = {
     media: string;

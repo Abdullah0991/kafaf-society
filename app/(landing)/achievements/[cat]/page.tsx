@@ -5,6 +5,7 @@ import YTPlayer from "@/components/YTPlayer";
 import PageHeader from "@/components/PageHeader";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import { getImagePath } from "@/lib/helpers";
 
 /*export async function generateStaticParams() {
     return Object.keys(ACHIEVEMENTS).map(key => ({ cat: key }));
@@ -37,7 +38,7 @@ const AchievementCategory = async ({ params }: { params: { cat: string } }) => {
                                                 title={post.title}
                                             /> :
                                             <Image
-                                                src={post.mediaUrl ? `/api/files?n=${post.mediaUrl}` : '/no_image.png'}
+                                                src={getImagePath(post.mediaUrl)}
                                                 alt={post.title}
                                                 width={560}
                                                 height={100}

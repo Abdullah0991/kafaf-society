@@ -1,5 +1,5 @@
 import React from 'react';
-import { currFormatter } from "@/constants";
+import { currFormatter } from "@/lib/helpers";
 
 type ProgressBarProps = {
     max: number;

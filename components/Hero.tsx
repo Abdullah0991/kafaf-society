@@ -1,8 +1,9 @@
 import React from 'react';
-import { APP_TITLE, HERO_SUB_TITLE, numFormatter, STATS } from "@/constants";
+import { APP_TITLE, HERO_SUB_TITLE, STATS } from "@/constants";
 import YTPlayer from "@/components/YTPlayer";
 import prisma from "@/lib/prisma";
 import { Statistics } from ".prisma/client";
+import { numFormatter } from "@/lib/helpers";
 
 const Hero = async () => {
     const stats = await prisma.statistics.findFirst() || {

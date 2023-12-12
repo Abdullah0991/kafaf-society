@@ -5,6 +5,7 @@ import { MATCH_URL_YOUTUBE } from "@/constants";
 import PageHeader from "@/components/PageHeader";
 import prisma from "@/lib/prisma";
 import type { Campaigns } from ".prisma/client";
+import { getImagePath } from "@/lib/helpers";
 
 const carousel = [
     '/campaign/img_1.jpeg',
@@ -26,18 +27,21 @@ const Campaigns = async () => {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-2'>
                             {
                                 data.map((camp: Campaigns) => (
-                                    <div key={camp.id} className='border rounded p-3 flex flex-col justify-between'>
-                                        {camp.image && MATCH_URL_YOUTUBE.test(camp.image) ?
-                                            <YTPlayer
-                                                url={camp.image}
-                                                title={camp.title}
-                                            /> :
-                                            <Image
-                                                src={camp.image ? `/api/files?n=${camp.image}` : '/no_image.png'}
-                                                alt={camp.title}
-                                                width={560}
-                                                height={200}
-                                            />}
+                                    <div key={camp.id}
+                                         className='border rounded p-3 flex flex-col justify-between min-h-[300px]'>
+                                        <div className='relative w-full h-full'>
+                                            {camp.image && MATCH_URL_YOUTUBE.test(camp.image) ?
+                                                <YTPlayer
+                                                    url={camp.image}
+                                                    title={camp.title}
+                                                /> :
+                                                <Image
+                                                    src={getImagePath(camp.image)}
+                                                    alt={camp.title}
+                                                    fill
+                                                    objectFit='cover'
+                                                />}
+                                        </div>
                                         <Link href={`/campaign/${camp.id}`}>
                                             <p className='pt-4 text-xl text-center'>{camp.title}</p>
                                         </Link>

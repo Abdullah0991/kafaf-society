@@ -273,22 +273,4 @@ export const STATS = [
         name: 'برنامج الاستجابة الطارئة',
         key: 'emergency'
     }
-]
-
-export const currFormatter = (num: number): string => {
-    let USDollar = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        maximumFractionDigits: 0
-    });
-
-    return USDollar.format(num);
-}
-
-export const numFormatter = (num: number): string => {
-    let numberFormatter = new Intl.NumberFormat('en-US', {
-        maximumFractionDigits: 0
-    });
-
-    return numberFormatter.format(num);
-}
+];
