@@ -14,7 +14,9 @@ const carousel = [
 ];
 
 const Campaigns = async () => {
-    const data = await prisma.campaigns.findMany();
+    const data = await prisma.campaigns.findMany({
+        orderBy: { createdAt: 'desc' }
+    });
     console.log(data);
 
     return (

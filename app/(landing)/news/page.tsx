@@ -37,7 +37,9 @@ const NewsPage = async () => {
     }
 
     const { data } = await news.json();*/
-    const data = await prisma.news.findMany();
+    const data = await prisma.news.findMany({
+        orderBy: { date: 'desc' }
+    });
 
     /*if (isLoading) {
         return <div className='max-container padding-container py-28'>

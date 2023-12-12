@@ -6,14 +6,17 @@ import { Statistics } from ".prisma/client";
 import { numFormatter } from "@/lib/helpers";
 
 const Hero = async () => {
-    const stats = await prisma.statistics.findFirst() || {
-        emergency: 0,
-        medical: 0,
-        clothes: 0,
-        food: 0,
-        logistic: 0,
-        activity: 0
-    } as Statistics;
+    const stats = await prisma.statistics.findFirst({
+            orderBy: { createdAt: 'desc' }
+        }) ||
+        {
+            emergency: 0,
+            medical: 0,
+            clothes: 0,
+            food: 0,
+            logistic: 0,
+            activity: 0
+        } as Statistics;
 
     const total = stats.activity + stats.medical + stats.emergency + stats.clothes + stats.food + stats.logistic;
 
