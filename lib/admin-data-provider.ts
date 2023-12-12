@@ -6,55 +6,50 @@ const endpoint = process.env.NEXT_PUBLIC_API_URL as string;
 console.log('endpoint', endpoint);
 const baseDataProvider = dataProvider(endpoint);
 
-type NewsParams = {
-    id: string;
-    title: string;
-    description: string;
-    date: string,
-    image: {
-        rawFile: File;
-        src?: string;
-        title?: string;
-    };
+type RaImageProp = null | string | {
+    rawFile: File;
+    src?: string;
+    title?: string;
 };
 
-const convertFileToBase64 = (file: { rawFile: File; src?: string; title?: string }) =>
+const convertFileToBase64 = (file: File) =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result);
         reader.onerror = reject;
-        reader.readAsDataURL(file.rawFile);
+        reader.readAsDataURL(file);
     });
 
 const replaceFileWithB64 = async (data: Record<string, any>, fieldKey: string) => {
-    const image = data[fieldKey]?.rawFile;
-    let base64Image = null;
-    if (image) {
-        base64Image = await convertFileToBase64(data[fieldKey]);
+    const image: RaImageProp = data[fieldKey];
+    // No image or image is already uploaded so no need to any action
+    if (!image || typeof image === "string") {
+        return data;
     }
 
-    return {
-        ...data,
-        [fieldKey]: base64Image ? { src: base64Image, title: image.name } : null
-    }
+    // Otherwise the image should be an object with `rawFile` prop
+    const imageFile = image.rawFile;
+    let base64Image = await convertFileToBase64(imageFile);
+
+    return { ...data, [fieldKey]: { src: base64Image, title: imageFile.name } };
 }
 
 export const adminDataProvider: DataProvider = withLifecycleCallbacks(baseDataProvider, [
     {
         resource: 'news',
-        beforeSave: async (params: any, dataProvider: DataProvider) => {
+        beforeSave: async (params: any, _dataProvider: DataProvider) => {
             return replaceFileWithB64(params, 'image');
         }
     },
     {
         resource: 'campaigns',
-        beforeSave: async (params, dataProvider1) => {
+        beforeSave: async (params, _dataProvider1) => {
             return replaceFileWithB64(params, 'image');
         },
     },
     {
         resource: 'tasks',
-        beforeSave: async (params, dataProvider1) => {
+        beforeSave: async (params, _dataProvider1) => {
             return replaceFileWithB64(params, 'image');
         },
     }

@@ -13,7 +13,7 @@ datasource db {
 model News {
   id          String   @id @default(uuid())
   title       String
-  description String
+  description String   @db.Text
   date        DateTime
   image       String?
   createdAt   DateTime @default(now())
@@ -24,7 +24,7 @@ model News {
 model Campaigns {
   id          String   @id @default(uuid())
   title       String
-  description String
+  description String   @db.Text
   target      Int      @default(0)
   cash        Int      @default(0)
   image       String?
@@ -59,7 +59,7 @@ model Services {
 model Tasks {
   id          String   @id @default(uuid())
   title       String
-  description String
+  description String   @db.Text
   target      Int      @default(0)
   cash        Int      @default(0)
   image       String?

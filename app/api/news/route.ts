@@ -1,42 +1,55 @@
-import { createHandler, defaultHandler, } from "ra-data-simple-prisma";
-
+import { createHandler, defaultHandler, deleteHandler, updateHandler, } from "ra-data-simple-prisma";
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
-import fs from 'fs';
+import { removeFile, uploadFile } from "@/lib/file-uploader";
 
 const route = async (req: Request) => {
     const body = await req.json();
 
     switch (body.method) {
-        /*case "getList":{
-            const result = await getListHandler<Prisma.NewsFindManyArgs>(
-                body as GetListRequest,
-                prisma.news,
-            );
-            return NextResponse.json(result);
-        }*/
-
         case "create": {
             console.log('body', body);
             const image = body.params.data.image;
             if (image && typeof image === 'object' && 'src' in image) {
                 let base64Image = image.src.split(';base64,').pop();
-                try {
-                    if (!fs.existsSync('./upload')) {
-                        fs.mkdirSync('./upload');
-                    }
-                    fs.writeFileSync(`./upload/${image.title}`, base64Image!, { encoding: 'base64' });
-                    body.params.data.image = `${image.title}`;
-                } catch (e) {
-                    console.error('store file error', e);
-                    return NextResponse.error();
-                }
+                body.params.data.image = await uploadFile(image.title, base64Image);
             }
             const result = await createHandler<Prisma.NewsCreateArgs>(
                 body,
                 prisma.news
             );
+            return NextResponse.json(result);
+        }
+        case "update": {
+            console.log('body', body);
+            const image = body.params.data.image;
+            if (image && typeof image === 'object' && 'src' in image) {
+                let base64Image = image.src.split(';base64,').pop();
+                body.params.data.image = await uploadFile(image.title, base64Image);
+            }
+
+            // Check for old image if it needs to remove
+            if (body.params.previousData?.image && body.params.previousData?.image !== image) {
+                await removeFile(body.params.previousData?.image);
+            }
+
+            const result = await updateHandler<Prisma.NewsUpdateArgs>(
+                body,
+                prisma.news,
+                {
+                    allowNestedUpsert: {
+                        settings: true,
+                    },
+                });
+            return NextResponse.json(result);
+        }
+        case "delete": {
+            const image = body.params.previousData.image;
+            if (image) {
+                await removeFile(image);
+            }
+            const result = await deleteHandler<Prisma.NewsDeleteArgs>(body, prisma.news);
             return NextResponse.json(result);
         }
         default: {
