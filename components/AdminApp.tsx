@@ -25,6 +25,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import { adminDataProvider } from "@/lib/admin-data-provider";
+import { adminAuthProvider } from "@/lib/admin-auth-provider";
 import CampaignIcon from '@mui/icons-material/Campaign';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -53,7 +54,13 @@ function RTL(props: any) {
 
 const AdminApp = () => (
     <RTL>
-        <Admin dataProvider={adminDataProvider} i18nProvider={i18nProvider} theme={theme}>
+        <Admin
+            dataProvider={adminDataProvider}
+            i18nProvider={i18nProvider}
+            authProvider={adminAuthProvider}
+            theme={theme}
+            requireAuth
+        >
             <Resource
                 name="statistics"
                 list={StatisticsList}
