@@ -8,7 +8,7 @@ type NavBarItem = {
 }
 export const NAV_LINKS: NavBarItem[] = [
     { href: '/', key: 'home', label: 'الرئيسية', children: [] },
-    // { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
+    { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
     { href: '/campaigns', key: 'campaigns', label: 'الحملات', children: [] },
     {
         href: '/services', key: 'services', label: 'الأقسام', children: [

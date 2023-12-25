@@ -5,6 +5,8 @@ import prisma from "@/lib/prisma";
 import { Statistics } from ".prisma/client";
 import { numFormatter } from "@/lib/helpers";
 
+const promoVideoUrl = process.env.NEXT_PUBLIC_PROMO_URL;
+
 const Hero = async () => {
     const stats = await prisma.statistics.findFirst({
             orderBy: { createdAt: 'desc' }
@@ -61,7 +63,7 @@ const Hero = async () => {
                     </blockquote>
                 </div>
                 <div className='w-full md:w-[560px]'>
-                    <YTPlayer url={'https://youtu.be/2V5DNwmvS2U'} title={'Promo'} />
+                    <YTPlayer url={promoVideoUrl ?? ''} title={'Promo'} />
                 </div>
             </section>
         </>
