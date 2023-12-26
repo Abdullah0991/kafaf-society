@@ -5,7 +5,7 @@ import { currFormatter } from "@/lib/helpers";
 const Box = () => {
     return (
         <>
-            <section className='max-container padding-container min-h-screen'>
+            <section className='max-container padding-container'>
                 <div className='py-6 md:py-10'>
                     <h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>
                     <div className='mt-10 flex flex-col lg:flex-row items-center gap-5'>
@@ -21,7 +21,7 @@ const Box = () => {
                     </div>
                 </div>
                 <div className='border bg-gray-20 mb-6' />
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10'>
+                {/*<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10'>
                     <BoxCounter label={'صندوق المحلات'} value1={256} />
                     <BoxCounter label={'صندوق المولات'} value1={2500} />
                     <BoxCounter label={'صندوق الجامعة'} value1={1300} />
@@ -31,19 +31,15 @@ const Box = () => {
                     href={'#case'}
                     className='flex justify-center gap-3 rounded-full border mt-10 w-full p-4 bg-emerald-700 text-white cursor-pointer'>
                     هل تريد المساعدة؟
-                </a>
+                </a>*/}
             </section>
             <section id='case' className='max-container padding-container flex flex-col items-center gap-5 mt-6'>
-                <CaseDisplay
-                    description={'عمر بحاجة لعملية في العين لكي يستعيد نظره كما كان وتحتاج العملية لـ 450$ دولار أمريكي'}
-                    gathered={200}
-                    total={450}
-                    media={'/case.png'}
-                />
+                <CaseDisplay latest />
                 <a
-                    href={'#'}
-                    className='flex justify-center gap-3 rounded-full border mt-2 w-full p-4 bg-emerald-500 text-white cursor-pointer'>
-                    تبرع
+                    href='#'
+                    className='flex justify-center gap-3 rounded-full border mt-2 w-full p-4 bg-gray-500 text-white cursor-pointer'
+                >
+                    عرض المزيد من الحالات
                 </a>
             </section>
         </>
