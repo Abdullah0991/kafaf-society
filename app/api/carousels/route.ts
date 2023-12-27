@@ -1,9 +1,9 @@
-import prisma from "@/lib/prisma";
 import { createHandler, defaultHandler, deleteHandler, deleteManyHandler, updateHandler } from "ra-data-simple-prisma";
-import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 import { removeFile, uploadFile } from "@/lib/file-uploader";
 import { Prisma } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 const route = async (req: Request) => {
     const body = await req.json();
@@ -16,12 +16,12 @@ const route = async (req: Request) => {
                 body.params.data.image = await uploadFile(image.title, base64Image);
             }
 
-            const result = await createHandler<Prisma.ServicesCreateArgs>(
+            const result = await createHandler<Prisma.CarouselsCreateArgs>(
                 body,
-                prisma.services
+                prisma.carousels
             );
 
-            revalidatePath('/services');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
@@ -37,16 +37,16 @@ const route = async (req: Request) => {
                 await removeFile(body.params.previousData?.image);
             }
 
-            const result = await updateHandler<Prisma.ServicesUpdateArgs>(
+            const result = await updateHandler<Prisma.CarouselsUpdateArgs>(
                 body,
-                prisma.services,
+                prisma.carousels,
                 {
                     allowNestedUpsert: {
                         settings: true,
                     },
                 });
 
-            revalidatePath('/services');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
@@ -56,15 +56,15 @@ const route = async (req: Request) => {
                 await removeFile(image);
             }
 
-            const result = await deleteHandler<Prisma.ServicesDeleteArgs>(body, prisma.services);
+            const result = await deleteHandler<Prisma.CarouselsDeleteArgs>(body, prisma.carousels);
 
-            revalidatePath('/services');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
         case "deleteMany": {
             const { ids } = body.params;
-            const images = await prisma.services.findMany({
+            const images = await prisma.carousels.findMany({
                 where: { id: { in: ids } },
                 select: { image: true }
             });
@@ -77,9 +77,9 @@ const route = async (req: Request) => {
                 }
             }
 
-            const result = await deleteManyHandler(body, prisma.services);
+            const result = await deleteManyHandler(body, prisma.carousels);
 
-            revalidatePath('/services');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }

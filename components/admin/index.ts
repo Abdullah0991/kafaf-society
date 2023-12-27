@@ -3,6 +3,8 @@ export { CampaignsList, CampaignsCreate, CampaignEdit } from './CampaignsAdmin';
 export { StatisticsList, StatisticsCreate, StatisticsEdit } from './StatisticsAdmin';
 export { ServicesList, ServicesCreate, ServicesEdit } from './ServicesAdmin';
 export { TasksList, TasksCreate, TasksEdit } from './TasksAdmin';
+export { BoxesList, BoxesCreate, BoxesEdit } from './BoxesAdmin';
+export { CarouselsList, CarouselsEdit, CarouselsCreate } from './CarouselsAdmin';
 
 export const generateImagePreview = (value: any) => {
     const api = process.env.NEXT_PUBLIC_API_URL;

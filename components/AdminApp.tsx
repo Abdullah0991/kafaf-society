@@ -1,9 +1,15 @@
 "use client"; // only needed if you choose App Router
 import { Admin, defaultTheme, RaThemeOptions, Resource } from "react-admin";
 import {
+    BoxesCreate,
+    BoxesEdit,
+    BoxesList,
     CampaignEdit,
     CampaignsCreate,
     CampaignsList,
+    CarouselsCreate,
+    CarouselsEdit,
+    CarouselsList,
     NewsCreate,
     NewsEdit,
     NewsList,
@@ -31,6 +37,8 @@ import NewspaperIcon from '@mui/icons-material/Newspaper';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CategoryIcon from '@mui/icons-material/Category';
 import AccessibleIcon from '@mui/icons-material/Accessible';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 const messages: Record<string, TranslationMessages> = {
     'ar': arabicMessages,
@@ -93,7 +101,7 @@ const AdminApp = () => (
                 edit={TasksEdit}
                 create={TasksCreate}
                 icon={AccessibleIcon}
-                options={{ label: 'الحالات الخاصة' }}
+                options={{ label: 'حالات الصندوق' }}
                 recordRepresentation="title"
             />
             <Resource
@@ -104,6 +112,23 @@ const AdminApp = () => (
                 icon={NewspaperIcon}
                 options={{ label: 'آخر الأخبار' }}
                 recordRepresentation="title"
+            />
+            <Resource
+                name="boxes"
+                list={BoxesList}
+                edit={BoxesEdit}
+                create={BoxesCreate}
+                icon={InventoryIcon}
+                options={{ label: 'الصناديق' }}
+                recordRepresentation="name"
+            />
+            <Resource
+                name="carousels"
+                list={CarouselsList}
+                edit={CarouselsEdit}
+                create={CarouselsCreate}
+                icon={ViewCarouselIcon}
+                options={{ label: 'شرائح الصور' }}
             />
         </Admin>
     </RTL>

@@ -29,6 +29,7 @@ model Campaigns {
   cash        Int      @default(0)
   image       String?
   createdAt   DateTime @default(now())
+  mediaUrl    String?
 
   @@map(name: "campaigns")
 }
@@ -51,7 +52,8 @@ model Services {
   type        Int
   title       String
   description String?
-  mediaUrl    String
+  mediaUrl    String?
+  image       String?
 
   @@map(name: "services")
 }
@@ -65,6 +67,25 @@ model Tasks {
   image       String?
   mediaUrl    String?
   createdAt   DateTime @default(now())
+  type        Int      @default(0)
 
   @@map(name: "tasks")
+}
+
+model Boxes {
+  id        String   @id @default(uuid())
+  name      String
+  cash      Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@map(name: "boxes")
+}
+
+model Carousels {
+  id    String @id @default(uuid())
+  type  Int
+  image String
+
+  @@map(name: "carousels")
 }

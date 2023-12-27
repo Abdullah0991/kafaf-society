@@ -274,3 +274,12 @@ export const STATS = [
         key: 'emergency'
     }
 ];
+
+export const TaskCategories: { id: number, name: string }[] = [
+    { id: 0, name: 'حالات خاصة' },
+    { id: 1, name: 'حالات طبية' },
+    { id: 2, name: 'كفالة يتيم' },
+    { id: 3, name: 'كفالة طالب' },
+    { id: 4, name: 'تأمين سكن' },
+    { id: 5, name: 'قضاء دين' },
+];

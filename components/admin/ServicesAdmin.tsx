@@ -3,6 +3,8 @@ import {
     Datagrid,
     Edit,
     FunctionField,
+    ImageField,
+    ImageInput,
     List,
     required,
     SearchInput,
@@ -43,7 +45,10 @@ export const ServicesCreate = () => (
                          fullWidth />
             <TextInput name="title" source="title" label="العنوان" validate={required()} fullWidth />
             <TextInput name="description" source="description" label="الوصف" rows={2} multiline fullWidth />
-            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" validate={required()} fullWidth />
+            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" fullWidth />
+            <ImageInput name='image' source='image' label='صورة'>
+                <ImageField source="src" title="title" />
+            </ImageInput>
         </SimpleForm>
     </Create>
 );
@@ -62,7 +67,10 @@ export const ServicesEdit = () => (
                          fullWidth />
             <TextInput name="title" source="title" label="العنوان" validate={required()} fullWidth />
             <TextInput name="description" source="description" label="الوصف" rows={2} multiline fullWidth />
-            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" validate={required()} fullWidth />
+            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" fullWidth />
+            <ImageInput name='image' source='image' label='صورة'>
+                <ImageField source="src" title="title" />
+            </ImageInput>
         </SimpleForm>
     </Edit>
 );

@@ -4,12 +4,14 @@ import {
     DateField,
     DateInput,
     Edit,
+    FunctionField,
     ImageField,
     ImageInput,
     List,
     NumberField,
     NumberInput,
     required,
+    SelectInput,
     SimpleForm,
     TextField,
     TextInput,
@@ -17,12 +19,9 @@ import {
 } from "react-admin";
 import { InputAdornment } from "@mui/material";
 import { generateImagePreview } from "./index";
-
-const currencyDisplayOptions = {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0
-}
+import { currencyDisplayOptions } from "@/components/admin/utils";
+import { Services } from "@prisma/client";
+import { TaskCategories } from "@/constants";
 
 export const TasksList = () => (
     <List>
@@ -31,6 +30,11 @@ export const TasksList = () => (
             {/*<TextField source="description" label='الوصف' />*/}
             <NumberField source="target" label='المبلغ المطلوب' options={currencyDisplayOptions} />
             <NumberField source="cash" label='المبلغ المجموع' options={currencyDisplayOptions} />
+            <FunctionField
+                source="type"
+                label="التصنيف"
+                render={(rec: Services) => TaskCategories.find(x => x.id === rec.type)?.name ?? rec.type}
+            />
             <DateField source="createdAt" label='تاريخ الإنشاء' />
         </Datagrid>
     </List>
@@ -56,6 +60,8 @@ export const TasksCreate = () => (
                 fullWidth
             />
             <div style={{ display: 'flex', gap: '1rem' }}>
+                <SelectInput name="type" source="type" label="التصنيف" choices={TaskCategories} validate={required()}
+                             fullWidth />
                 <NumberInput
                     name="target"
                     source="target"
@@ -103,6 +109,8 @@ export const TasksEdit = () => (
                 fullWidth
             />
             <div style={{ display: 'flex', gap: '1rem' }}>
+                <SelectInput name="type" source="type" label="التصنيف" choices={TaskCategories} validate={required()}
+                             fullWidth />
                 <NumberInput
                     name="target"
                     source="target"
@@ -118,15 +126,15 @@ export const TasksEdit = () => (
                 />
             </div>
             <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" fullWidth />
+            <ImageInput name='image' source='image' label='صورة' format={generateImagePreview}>
+                <ImageField source="src" title="title" />
+            </ImageInput>
             <DateInput
                 name="createdAt"
                 source="createdAt"
                 label='تاريخ الإنشاء'
                 InputProps={{ readOnly: true }}
             />
-            <ImageInput name='image' source='image' label='صورة' format={generateImagePreview}>
-                <ImageField source="src" title="title" />
-            </ImageInput>
         </SimpleForm>
     </Edit>
 );

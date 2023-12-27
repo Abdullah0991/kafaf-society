@@ -17,12 +17,7 @@ import {
 } from "react-admin";
 import { InputAdornment } from "@mui/material";
 import { generateImagePreview } from "./index";
-
-const currencyDisplayOptions = {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0
-}
+import { currencyDisplayOptions } from "@/components/admin/utils";
 
 export const CampaignsList = () => (
     <List>
@@ -70,6 +65,7 @@ export const CampaignsCreate = () => (
                     InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
                 />
             </div>
+            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" fullWidth />
             <ImageInput name='image' source='image' label='صورة'>
                 <ImageField source="src" title="title" />
             </ImageInput>
@@ -116,15 +112,16 @@ export const CampaignEdit = () => (
                     InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
                 />
             </div>
+            <TextInput name="mediaUrl" source="mediaUrl" label="رابط (صورة - يوتيوب)" fullWidth />
+            <ImageInput name='image' source='image' label='صورة' format={generateImagePreview}>
+                <ImageField source="src" title="title" />
+            </ImageInput>
             <DateInput
                 name="createdAt"
                 source="createdAt"
                 label='تاريخ الإنشاء'
                 InputProps={{ readOnly: true }}
             />
-            <ImageInput name='image' source='image' label='صورة' format={generateImagePreview}>
-                <ImageField source="src" title="title" />
-            </ImageInput>
         </SimpleForm>
     </Edit>
 );
