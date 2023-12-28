@@ -79,6 +79,7 @@ const Carousel = ({ images, showPosition = false, timerDelay = 2000 }: CarouselP
             </div>
 
             {/*<div className="relative h-80 w-72">*/}
+            {!!(images && images.length) &&
                 <Image
                     src={getImagePath(images[currentIndex])}
                     alt="image"
@@ -86,6 +87,7 @@ const Carousel = ({ images, showPosition = false, timerDelay = 2000 }: CarouselP
                     width={450}
                     height={320}
                 />
+            }
             {/*</div>*/}
         </div>
     );

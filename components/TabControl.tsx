@@ -24,6 +24,7 @@ const TabControl = () => {
             {
                 TaskCategories.slice(0, 2).map((cat) => (
                     <button
+                        key={cat.id}
                         onClick={() => handleTabChange(cat.id)}
                         className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${selected === cat.id ? 'bg-emerald-600 text-white' : ''}`}
                     >
