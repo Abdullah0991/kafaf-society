@@ -4,12 +4,12 @@ import Image from "next/image";
 import { getImagePath } from "@/lib/helpers";
 import prisma from "@/lib/prisma";
 
-const getNews = async (id: string) => {
+const getNewsById = async (id: string) => {
     return prisma.news.findUnique({ where: { id } });
 }
 
 const NewsDetailsPage = async ({ params }: { params: { id: string } }) => {
-    const news = await getNews(params.id);
+    const news = await getNewsById(params.id);
 
     if (!news) {
         return <div className='max-container padding-container py-28'>
@@ -31,18 +31,6 @@ const NewsDetailsPage = async ({ params }: { params: { id: string } }) => {
             <h1 className='text-xl md:text-2xl mt-5 md:mt-10 mb-4 px-4 py-2 border-r-4 bg-gray-10'>
                 {news.title}:
             </h1>
-            {/*<div className='flex flex-col-reverse md:flex-row items-end mb-6 gap-5'>
-                <div className='w-full flex-1'>
-                    {!completed && <DonateButton className='w-full md:w-1/2' />}
-                    {
-                        completed &&
-                        <p className='font-bold text-white text-center p-1 w-1/2 bg-green-600 rounded-full'>
-                            مكتلمة!
-                        </p>
-                    }
-                </div>
-                <ProgressBar max={task.target} current={task.cash} label='تقدم الحالة' className='flex-1' />
-            </div>*/}
             <div
                 className='flex flex-col md:flex-row px-4 py-4 md:mb-10 border rounded-md min-h-[200px] gap-8 md:gap-4'>
                 <p className='text-lg whitespace-break-spaces flex-1'>
