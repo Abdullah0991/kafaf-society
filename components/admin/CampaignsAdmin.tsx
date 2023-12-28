@@ -10,6 +10,7 @@ import {
     NumberField,
     NumberInput,
     required,
+    SearchInput,
     SimpleForm,
     TextField,
     TextInput,
@@ -19,8 +20,12 @@ import { InputAdornment } from "@mui/material";
 import { generateImagePreview } from "./index";
 import { currencyDisplayOptions } from "@/components/admin/utils";
 
+const postFilters = [
+    <SearchInput source="title" alwaysOn />,
+];
+
 export const CampaignsList = () => (
-    <List>
+    <List filters={postFilters}>
         <Datagrid rowClick="edit">
             <TextField source="title" label='العنوان' />
             <TextField source="description" label='الوصف' />

@@ -11,6 +11,7 @@ import {
     NumberField,
     NumberInput,
     required,
+    SearchInput,
     SelectInput,
     SimpleForm,
     TextField,
@@ -23,8 +24,13 @@ import { currencyDisplayOptions } from "@/components/admin/utils";
 import { Services } from "@prisma/client";
 import { TaskCategories } from "@/constants";
 
+const postFilters = [
+    <SearchInput source="title" alwaysOn />,
+    <SelectInput label="فلترة حسب التصنيف" source="type" defaultValue={0} choices={TaskCategories} alwaysOn />,
+];
+
 export const TasksList = () => (
-    <List>
+    <List filters={postFilters}>
         <Datagrid rowClick="edit">
             <TextField source="title" label='العنوان' />
             {/*<TextField source="description" label='الوصف' />*/}

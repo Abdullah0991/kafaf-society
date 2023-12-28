@@ -19,11 +19,11 @@ const ProgressBar = ({ max, current, label, className = '' }: ProgressBarProps) 
                     &nbsp;
                     ({`${Math.round((current * 100) / max)} %`})
                 </h4>
-                <span className="px-2 py-1 rounded-lg bg-lime-50 text-emerald-500 text-xs lg:text-sm">
-                    {currFormatter(current)} / {currFormatter(max)}
+                <span className="px-2 py-1 rounded-lg bg-lime-50 text-emerald-500 text-sm">
+                    {currFormatter(current)} / <strong>{currFormatter(max)}</strong>
                 </span>
             </div>
-            <div className="overflow-hidden bg-emerald-50 h-1.5 rounded-full w-full">
+            <div className={`overflow-hidden bg-emerald-50 h-1.5 rounded-full w-full`}>
               <span
                   className="h-full bg-emerald-500 w-full block rounded-full"
                   style={{ "width": `${Math.round((current * 100) / max)}%` }}

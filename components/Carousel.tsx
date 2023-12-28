@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-const imagesStore = [
-    "https://unsplash.it/640/425?image=30",
-    "https://unsplash.it/640/425?image=40",
-    "https://unsplash.it/640/425?image=50",
-]
+import { getImagePath } from "@/lib/helpers";
 
 type CarouselProps = {
     images: string[];
@@ -85,7 +80,7 @@ const Carousel = ({ images, showPosition = false, timerDelay = 2000 }: CarouselP
 
             {/*<div className="relative h-80 w-72">*/}
                 <Image
-                    src={images[currentIndex]}
+                    src={getImagePath(images[currentIndex])}
                     alt="image"
                     className="rounded-sm"
                     width={450}

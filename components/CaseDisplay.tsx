@@ -1,73 +1,86 @@
 import React from 'react';
 import Image from "next/image";
 import ProgressBar from "@/components/ProgressBar";
-import CircularProgressBar from "@/components/CircularProgressBar";
 import { currFormatter, getImagePath } from "@/lib/helpers";
-import prisma from "@/lib/prisma";
 import Button from "@/components/Button";
+import { TaskCategories } from "@/constants";
+import Link from "next/link";
+import DonateButton from "@/components/DonateButton";
+import { Tasks } from "@prisma/client";
 
-type CaseDisplayProps = {
-    latest?: boolean;
-    id?: string;
+type Props = {
+    rec: Tasks;
     showDonateButton?: boolean;
 }
 
-const getLatestCase = async () => {
-    return prisma.tasks.findFirst({
-        orderBy: { createdAt: 'desc' },
-        where: { cash: { lt: prisma.tasks.fields.target } }
-    });
-}
 
-const getCaseById = async (id: string) => {
-    return prisma.tasks.findUnique({
-        where: { id }
-    });
-}
+const TaskCategoryToColor = [
+    'bg-red-500',
+    'bg-purple-500',
+    'bg-emerald-500',
+    'bg-orange-500',
+    'bg-pink-500',
+    'bg-blue-500'
+];
 
-const CaseDisplay = async ({ id, latest = false, showDonateButton = true }: CaseDisplayProps) => {
-    let rec;
+const CaseDisplay = async ({ rec, showDonateButton = true }: Props) => {
+    /*let rec;
     if (latest) {
-        rec = await getLatestCase();
+        rec = await getLatestCase(category.id);
     } else if (id) {
         rec = await getCaseById(id);
     }
 
+    if (!rec && returnNull) {
+        return null;
+    }*/
+    const category = TaskCategories[rec.type];
+    const completed = rec.cash >= rec.target;
+
     return (
-        <div className='border-2 border-dashed rounded-2xl pt-1 px-1'>
-            {
-                rec ?
-                    <>
-                        <div className='relative w-full min-h-[200px] md:min-h-[500px] rounded-2xl'>
-                            <Image src={getImagePath(rec.image)} alt={'case'} fill objectFit='contain' />
+        <div className={`border rounded-2xl shadow ${completed ? 'bg-gradient-to-br from-lime-50 to-lime-300' : ''}`}>
+            <div className='relative w-full min-h-[200px]'>
+                <Image src={getImagePath(rec.image)} alt={'case'} fill objectFit='cover'
+                       className='rounded-tl-2xl rounded-tr-2xl' />
+            </div>
+            <div className='flex flex-col gap-6 py-6 px-6 min-h-[300px]'>
+                <ProgressBar label={'التقدم'} max={rec.target} current={rec.cash} />
+                {/*<CircularProgressBar max={rec.target} current={rec.cash} className='hidden md:flex' />*/}
+                <article className='flex flex-col items-center justify-between flex-grow'>
+                    <div className='flex justify-between w-full'>
+                        <p>
+                            <span className='text-lg md:text-xl text-gray-30 ml-2'>المبلغ المجموع:</span>
+                            <span className='text-lg md:text-xl text-emerald-600 font-bold'>
+                                {currFormatter(rec.cash)}
+                            </span>
+                        </p>
+                        <div
+                            className={`px-2 py-1 rounded-md ${TaskCategoryToColor[category.id]} text-white text-xs flex items-center`}>
+                            {category.name}
                         </div>
-                        <div className='flex flex-col md:flex-row-reverse gap-6 md:gap-20 py-6 px-6 md:px-10'>
-                            <ProgressBar label={'التقدم'} max={rec.target} current={rec.cash} className='md:hidden' />
-                            <CircularProgressBar max={rec.target} current={rec.cash} className='hidden md:flex' />
-                            <article className='flex flex-col items-center gap-5'>
-                                <p className='flex gap-2'>
-                                    <span className='text-xl md:text-3xl text-gray-30'>المبلغ المجموع:</span>
-                                    <span className='text-xl md:text-3xl text-emerald-600 font-bold'>
-                                        {currFormatter(rec.cash)}
-                                    </span>
-                                </p>
-                                <p className='text-xl md:text-2xl text-center md:text-start'>
-                                    {rec.description}
-                                </p>
-                                {
-                                    showDonateButton &&
-                                    <Button
-                                        label='تبرع'
-                                        className='mt-2 w-full p-4 bg-emerald-500 text-white cursor-pointer'
-                                    />
-                                }
-                            </article>
-                        </div>
-                    </> :
-                    <div className='max-container padding-container py-20'>
-                        <h1 className='text-center text-3xl'>لا توجــد معلومات عن الحالة</h1>
                     </div>
-            }
+                    <p className='text-md text-center line-clamp-3'>
+                        {rec.description}
+                    </p>
+                    {
+                        showDonateButton &&
+                        <div className='flex gap-3 items-center w-full mt-2'>
+                            {!completed && <DonateButton className='w-3/4' />}
+                            {completed &&
+                                <p className='font-bold text-white text-center p-1 w-3/4 bg-green-600 rounded-full'>
+                                    مكتلمة!
+                                </p>
+                            }
+                            <Link href={`/cases/${rec.id}`}>
+                                <Button
+                                    label='المزيد من المعلومات'
+                                    className='p-2 text-cyan-500 bg-white text-xs cursor-pointer'
+                                />
+                            </Link>
+                        </div>
+                    }
+                </article>
+            </div>
         </div>
     )
 }

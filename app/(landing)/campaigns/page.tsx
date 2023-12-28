@@ -7,12 +7,6 @@ import prisma from "@/lib/prisma";
 import type { Campaigns } from ".prisma/client";
 import { getImagePath } from "@/lib/helpers";
 
-const carousel = [
-    '/campaign/img_1.jpeg',
-    '/campaign/img_2.jpeg',
-    '/campaign/img_3.jpeg',
-];
-
 const Campaigns = async () => {
     const data = await prisma.campaigns.findMany({
         orderBy: { createdAt: 'desc' }
@@ -21,7 +15,7 @@ const Campaigns = async () => {
 
     return (
         <>
-            <PageHeader title='الحملات' images={carousel} />
+            <PageHeader title='الحملات' noCarousel />
             <div className='max-container padding-container pb-20 pt-6'>
                 {
                     (!data || !data.length) ?

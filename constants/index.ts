@@ -9,9 +9,10 @@ type NavBarItem = {
 export const NAV_LINKS: NavBarItem[] = [
     { href: '/', key: 'home', label: 'الرئيسية', children: [] },
     { href: '/box', key: 'box', label: 'صندوق المستقبل بأيدينا', children: [] },
+    { href: '/cases', key: 'cases', label: 'الحالات', children: [] },
     { href: '/campaigns', key: 'campaigns', label: 'الحملات', children: [] },
     {
-        href: '/services', key: 'services', label: 'الأقسام', children: [
+        href: '/services', key: 'services', label: 'الأعمال المنجزة', children: [
             { label: 'القسم الطبي', key: 'medical', href: '/services/medical' },
             { label: 'قسم الأنشطة', key: 'activities', href: '/services/activities' },
             { label: 'قسم الحالات الخاصة', key: 'special', href: '/services/special' },
@@ -67,186 +68,38 @@ export const FOOTER_CONTACT_INFO = {
     ]
 }
 
-// type ACHIEVEMENTS_DATA = { title: string, posts: { title: string, media: string }[], carousel: string[] };
-
-export const ServiceCategories: { id: number, name: string, key: string, carousel: string[] }[] = [
+export const ServiceCategories: { id: number, name: string, key: string }[] = [
     {
         id: 0,
         name: 'القسم الطبي',
         key: 'medical',
-        carousel: [
-            '/medical/img_1.jpeg',
-            '/medical/img_2.jpeg',
-            '/medical/img_3.jpeg',
-            '/medical/img_4.jpg',
-        ]
     },
     {
         id: 1,
         name: 'قسم الأنشطة',
         key: 'activities',
-        carousel: [
-            '/activity/img_1.jpeg',
-            '/activity/img_2.jpeg',
-            '/activity/img_3.jpeg',
-            '/activity/img_4.jpeg',
-            '/activity/img_5.jpeg',
-        ]
     },
     {
         id: 2,
         name: 'قسم المخيمات',
         key: 'camps',
-        carousel: [
-            '/camps/img_1.jpeg',
-            '/camps/img_2.jpeg',
-            '/camps/img_3.jpeg',
-        ]
     },
     {
         id: 3,
         name: 'قسم الألبسة',
         key: 'clothes',
-        carousel: [
-            '/clothes/img_1.jpeg',
-            '/clothes/img_2.jpeg',
-            '/clothes/img_3.jpeg',
-            '/clothes/img_4.jpeg',
-        ]
     },
     {
         id: 4,
         name: 'القسم التعليمي',
         key: 'education',
-        carousel: [
-            '/education/img_1.jpeg',
-            '/education/img_2.jpeg',
-            '/education/img_3.jpeg',
-        ]
     },
     {
         id: 5,
         name: 'قسم الحالات الخاصة',
         key: 'special',
-        carousel: [
-            '/special/img_1.jpeg',
-            '/special/img_2.jpeg',
-        ]
     },
 ];
-
-/*export const ACHIEVEMENTS: { [p: string]: ACHIEVEMENTS_DATA } = {
-    medical: {
-        title: 'القسم الطبي',
-        posts: [
-            { title: '135 عملية جراحية رحلة علاج الشاب مجد', media: 'https://youtu.be/hJ_NRNcN1eg' },
-            { title: 'انب من عمل قسم التغذية في جمعية كفاف شمال حلب', media: 'https://youtu.be/tQNWUk-3f70' },
-        ],
-        carousel: [
-            '/medical/img_1.jpeg',
-            '/medical/img_2.jpeg',
-            '/medical/img_3.jpeg',
-            '/medical/img_4.jpg',
-        ]
-    },
-    activities: {
-        title: 'قسم الأنشطة',
-        posts: [
-            { title: 'نشاط لإسعاد المؤنسات الغاليات', media: 'https://youtu.be/iSdx0bymFEQ' },
-            { title: 'نشاط الرسم لإضافة لمسة جمالية للحياة', media: 'https://youtu.be/nAIUkvTdujg' },
-            { title: 'من أبسط حقوق الأطفال اللعب والتعلم', media: 'https://youtu.be/r3qNqsg2tzA' },
-            { title: 'في عيد العمال', media: 'https://youtu.be/kcF_zOT7_8s' },
-            { title: 'في ذكرى اليوم العالمي لليتيم', media: 'https://youtu.be/pD-87yW3SXc' },
-            { title: 'فرحتكم عيدنا', media: 'https://youtu.be/1enbzjZ0S7E' },
-        ],
-        carousel: [
-            '/activity/img_1.jpeg',
-            '/activity/img_2.jpeg',
-            '/activity/img_3.jpeg',
-            '/activity/img_4.jpeg',
-            '/activity/img_5.jpeg',
-        ]
-    },
-    special: {
-        title: 'قسم الحالات الخاصة',
-        posts: [],
-        carousel: [
-            '/special/img_1.jpeg',
-            '/special/img_2.jpeg',
-        ]
-    },
-    camps: {
-        title: 'المخيمات',
-        posts: [
-            { title: 'البنات سكر نبات', media: 'https://youtu.be/_zGkYs9O08g' },
-            { title: 'الاستجابة الطارئة لعائلة مهجرة شمال حلب', media: 'https://youtu.be/kurWI_oUVj4' },
-        ],
-        carousel: [
-            '/camps/img_1.jpeg',
-            '/camps/img_2.jpeg',
-            '/camps/img_3.jpeg',
-        ]
-    },
-    education: {
-        title: 'البرامج والتدريبات التعليمية',
-        posts: [],
-        carousel: [
-            '/education/img_1.jpeg',
-            '/education/img_2.jpeg',
-            '/education/img_3.jpeg',
-        ]
-    },
-    clothes: {
-        title: 'صالة الألبسة',
-        posts: [],
-        carousel: [
-            '/clothes/img_1.jpeg',
-            '/clothes/img_2.jpeg',
-            '/clothes/img_3.jpeg',
-            '/clothes/img_4.jpeg',
-        ]
-    },
-}*/
-
-/*export const CAMPAIGNS: { id: string, title: string, media: string, content: string }[] = [
-    {
-        id: '1234',
-        title: 'حملة مساعدة متضرري الزلزال',
-        media: '/bg_1.jpg',
-        content: `في 6 من شباط 2023 ضرب زلزال مزدوج ومدمًّر مناطق مختلفة من شمال سوريا وجنوب تركيا، كان مركزه ولايتي مرعش وغازي عينتاب وإقليم هاتاي الحدوي مع سوريا، ما تسبب في دمار واسع النطاق وأثّر على حياة عدد لا يحصى من الأفراد، وحول المنطقة إلى مدن منكوبة بثوان فقط!
-
-ترك الزّلزال الذي بلغت قوته 7.8 على مقياس ريختر المتضرّرين في حاجة ماسة إلى المساعدة والدعم، في “كفاف”، امتلأت مستشفياتنا جميعها وعلى الفور بادرنا إلى القيام بالإسعافات الأولية وإنقاذ الجرحى الواصلين، في صباح اليوم التالي للكارثة كنا ملتزمين وقمنا بتقدير كامل للاحتياجات في هذه الحالة الطارئة لتقديم المعونات الإغاثية وإنشاء مخيمات الإقامة المؤقتة وتجهيزها بالتدفئة والأثاث كل ذلك بالتوازي مع استمرار خدماتنا الطبية المنقذة للحياة في مشافينا.`
-    },
-    {
-        id: '2345',
-        content: 'test',
-        title: 'حملة تنظيف شاطئ بحيرة ميدنكي',
-        media: '/bg_1.jpg'
-    }
-];*/
-
-/*export const NEWS: { title: string, date: Date, content: string, media?: string }[] = [
-    {
-        title: 'اكتمال مشروع إنارة مخيف كفاف 2',
-        date: new Date(),
-        content: 'Test 1 Test 1 Test 1 Test 1 Test 1 Test 1 Test 1 Test 1'
-    },
-    {
-        title: 'افتتاح مخيم كفاف 2',
-        date: new Date(),
-        content: 'Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2'
-    },
-    {
-        title: 'اطلاق حملة مساعدة متضرري الزلزال',
-        date: new Date(),
-        content: 'Test 3 Test 3 Test 3 Test 3 Test 3 Test 3 Test 3 Test 3'
-    },
-    {
-        title: 'بدء استقبال تبرعاتكم في صندوق المستقبل بأيدينا في منطقة عفرين',
-        date: new Date(),
-        content: 'Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4 Test 4'
-    }
-];*/
 
 export const STATS = [
     {

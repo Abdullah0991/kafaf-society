@@ -20,7 +20,7 @@ import { ServiceCategories } from "@/constants";
 
 const postFilters = [
     <SearchInput source="title" alwaysOn />,
-    <SelectInput label="فلترة حسب القسم" source="type" defaultValue={0} choices={ServiceCategories} />,
+    <SelectInput label="فلترة حسب القسم" source="type" defaultValue={0} choices={ServiceCategories} alwaysOn />,
 ];
 
 export const ServicesList = () => (

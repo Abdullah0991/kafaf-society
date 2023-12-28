@@ -8,6 +8,7 @@ import {
     ImageInput,
     List,
     required,
+    SearchInput,
     SimpleForm,
     TextField,
     TextInput,
@@ -15,8 +16,12 @@ import {
 } from 'react-admin';
 import { generateImagePreview } from "./index";
 
+const postFilters = [
+    <SearchInput source="title" alwaysOn />,
+];
+
 export const NewsList = () => (
-    <List>
+    <List filters={postFilters}>
         <Datagrid rowClick="edit">
             <TextField source="title" label='العنوان' />
             <TextField source="description" label='الوصف' />

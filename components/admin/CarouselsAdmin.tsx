@@ -19,8 +19,12 @@ import { generateImagePreview } from "@/components/admin/index";
 const choices = ServiceCategories.map((cat) => ({ id: cat.id, name: cat.name }));
 const api = process.env.NEXT_PUBLIC_API_URL;
 
+const postFilters = [
+    <SelectInput label="فلترة حسب القسم" source="type" choices={ServiceCategories} alwaysOn/>,
+];
+
 export const CarouselsList = () => (
-    <List>
+    <List filters={postFilters}>
         <Datagrid rowClick="edit">
             <FunctionField
                 label="الصورة"
