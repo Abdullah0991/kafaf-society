@@ -35,33 +35,6 @@ const ServiceCategory = async ({ params }: { params: { cat: string } }) => {
                             {
                                 posts.map((post) => (
                                     <ServicePost rec={post} key={post.id} />
-                                    /*<div className='border rounded p-3' key={idx}>
-                                        {post.mediaUrl ? (
-                                                MATCH_URL_YOUTUBE.test(post.mediaUrl) ?
-                                                    <YTPlayer
-                                                        url={post.mediaUrl}
-                                                        title={post.title}
-                                                    /> :
-                                                    <Image
-                                                        src={getImagePath(post.mediaUrl)}
-                                                        alt={post.title}
-                                                        width={560}
-                                                        height={100}
-                                                    />
-                                            ) :
-                                            <Image
-                                                src={getImagePath(post.image)}
-                                                alt={post.title}
-                                                width={560}
-                                                height={100}
-                                            />
-                                        }
-                                        <p className='pt-4 text-xl text-center'>{post.title}</p>
-                                        {
-                                            post.description &&
-                                            <p>{post.description}</p>
-                                        }
-                                    </div>*/
                                 ))
                             }
                         </div>

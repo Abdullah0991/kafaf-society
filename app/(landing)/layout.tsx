@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Changa } from 'next/font/google'
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,6 +10,11 @@ export const metadata: Metadata = {
     title: 'جمعية كفاف',
     description: 'جمعية كفاف',
 }
+
+export const viewport: Viewport = {
+    colorScheme: "light"
+}
+
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
     return (
         <html lang="ar" dir='rtl'>

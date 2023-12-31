@@ -51,7 +51,7 @@ model Services {
   id          String  @id @default(uuid())
   type        Int
   title       String
-  description String?
+  description String? @db.Text
   mediaUrl    String?
   image       String?
 

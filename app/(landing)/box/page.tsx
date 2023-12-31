@@ -1,10 +1,12 @@
 import React from 'react';
 import CaseDisplay from "@/components/CaseDisplay";
 import { currFormatter } from "@/lib/helpers";
-import { TaskCategories } from "@/constants";
+import { BOX_DESC, TaskCategories } from "@/constants";
 import Link from "next/link";
 import { getLatestCase } from "@/lib/tasks-api";
 import prisma from "@/lib/prisma";
+import Image from "next/image";
+import Quote from "@/components/Quote";
 
 const getBoxesTotal = async () => {
     return prisma.boxes.aggregate({
@@ -28,18 +30,27 @@ const Box = async () => {
     return (
         <>
             <section className='max-container padding-container'>
-                <div className='py-6 md:py-10'>
-                    <h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>
-                    <div className='mt-10 flex flex-col lg:flex-row items-center gap-5'>
-                        <div className='flex flex-col md:flex-row gap-3 items-center'>
-                            <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
-                            <span className='text-4xl text-green-600'>{currFormatter(_sum.cash ?? 0)}</span>
+                <div className='py-6 md:py-10 flex flex-col md:flex-row gap-6 md:gap-12'>
+                    <div className='md:min-w-[520px] flex-col space-y-6'>
+                        <div className='relative min-h-[160px] md:min-h-[200px] md:flex-grow'>
+                            <Image src={'/box_dark.png'} alt={'box_logo'} fill objectFit='cover' />
                         </div>
-                        <span className='hidden flex-grow md:block' />
-                        <div className='flex gap-3'>
-                            <span>آخر تحديث:</span>
-                            <span className='text-gray-30'>{new Date().toLocaleString()}</span>
+                        <div className='flex-grow'>
+                            {/*<h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>*/}
+                            <div className='flex flex-col gap-5 justify-center items-center'>
+                                <div className='flex flex-col md:flex-row gap-3 items-center'>
+                                    <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
+                                    <span className='text-4xl text-green-600'>{currFormatter(_sum.cash ?? 0)}</span>
+                                </div>
+                                <div className='flex gap-3'>
+                                    <span>آخر تحديث:</span>
+                                    <span className='text-gray-30'>{new Date().toLocaleString()}</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div className='hidden md:flex flex-1 items-center px-14'>
+                        <Quote description={BOX_DESC} title={''} />
                     </div>
                 </div>
                 <div className='border bg-gray-20 mb-6' />
@@ -73,6 +84,9 @@ const Box = async () => {
                 >
                     عرض المزيد من الحالات
                 </Link>
+                <div className='md:hidden flex flex-1 items-center'>
+                    <Quote description={BOX_DESC} title={''} />
+                </div>
             </section>
         </>
     );

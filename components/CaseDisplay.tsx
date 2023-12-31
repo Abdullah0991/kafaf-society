@@ -43,20 +43,19 @@ const CaseDisplay = async ({ rec, showDonateButton = true }: Props) => {
                 <Image src={getImagePath(rec.image)} alt={'case'} fill objectFit='cover'
                        className='rounded-tl-2xl rounded-tr-2xl' />
             </div>
-            <div className='flex flex-col gap-6 py-6 px-6 min-h-[300px]'>
+            <div className='flex flex-col gap-6 py-6 px-4 md:px-6 min-h-[300px]'>
                 <ProgressBar label={'التقدم'} max={rec.target} current={rec.cash} />
-                {/*<CircularProgressBar max={rec.target} current={rec.cash} className='hidden md:flex' />*/}
                 <article className='flex flex-col items-center justify-between flex-grow'>
                     <div className='flex justify-between w-full'>
-                        <p>
+                        <div className='flex-1'>
                             <span className='text-lg md:text-xl text-gray-30 ml-2'>المبلغ المجموع:</span>
                             <span className='text-lg md:text-xl text-emerald-600 font-bold'>
                                 {currFormatter(rec.cash)}
                             </span>
-                        </p>
+                        </div>
                         <div
                             className={`px-2 py-1 rounded-md ${TaskCategoryToColor[category.id]} text-white text-xs flex items-center`}>
-                            {category.name}
+                            <span>{category.name}</span>
                         </div>
                     </div>
                     <p className='text-md text-center line-clamp-3'>

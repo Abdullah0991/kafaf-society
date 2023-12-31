@@ -4,6 +4,7 @@ import YTPlayer from "@/components/YTPlayer";
 import prisma from "@/lib/prisma";
 import { Statistics } from ".prisma/client";
 import { numFormatter } from "@/lib/helpers";
+import Quote from "@/components/Quote";
 
 const promoVideoUrl = process.env.NEXT_PUBLIC_PROMO_URL;
 
@@ -49,19 +50,7 @@ const Hero = async () => {
             </section>
             <section
                 className='max-container bg-neutral-100 flex flex-col lg:flex-row items-center lg:items-end gap-20 px-6 lg:px-20 my-20 py-10'>
-                <div className='relative flex flex-1 flex-col xl:w-1/2'>
-                    <h1 className='font-bold text-4xl lg:text-5xl lg:text-start text-center'>من نحن:</h1>
-                    <blockquote
-                        className="relative mt-6 p-4 text-xl italic border-r-4 lg:border-0 text-neutral-600 quote">
-                        <div className="stylistic-quote-mark top-0 right-[100%] mr-2" aria-hidden="true">
-                            &ldquo;
-                        </div>
-                        <p className='mb-4 text-center'>{HERO_SUB_TITLE}</p>
-                        <div className="stylistic-quote-mark bottom-0 left-[100%] rotate-180 ml-3" aria-hidden="true">
-                            &ldquo;
-                        </div>
-                    </blockquote>
-                </div>
+                <Quote title="من نحن:" description={HERO_SUB_TITLE} />
                 <div className='w-full md:w-[560px]'>
                     <YTPlayer url={promoVideoUrl ?? ''} title={'Promo'} />
                 </div>

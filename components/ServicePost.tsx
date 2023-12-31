@@ -13,9 +13,7 @@ const ServicePost = ({ rec }: Props) => {
             {
                 rec ?
                     <div>
-                        <div className='relative w-full min-h-[200px] md:min-h-[225px]'>
-                            {/*<Image src={getImagePath(rec.image)} alt={'case'} fill objectFit='cover'
-                                   className='rounded-tl-2xl rounded-tr-2xl' />*/}
+                        <div className='relative w-full min-h-[200px] md:h-[225px] md:min-h-[225px]'>
                             {rec.mediaUrl ? (
                                     MATCH_URL_YOUTUBE.test(rec.mediaUrl) ?
                                         <YTPlayer
@@ -38,11 +36,11 @@ const ServicePost = ({ rec }: Props) => {
                                 />
                             }
                         </div>
-                        <div className='flex flex-col gap-6 py-6 px-6 max-h-[160px]'>
-                            <article className='flex flex-col items-center justify-between flex-grow'>
-                                <p className='text-lg text-center font-bold'>{rec.title}</p>
+                        <div className='flex flex-col gap-6 py-6 px-6'>
+                            <article className='flex flex-col items-center justify-between flex-grow gap-4'>
+                                <p className='text-md text-center font-bold line-clamp-3'>{rec.title}</p>
                                 {rec.description &&
-                                    <p className='text-md text-center text-gray-30 line-clamp-3'>
+                                    <p className='text-sm text-center text-gray-30 line-clamp-3'>
                                         {rec.description}
                                     </p>
                                 }
