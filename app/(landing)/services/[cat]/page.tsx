@@ -21,7 +21,8 @@ const ServiceCategory = async ({ params }: { params: { cat: string } }) => {
     console.log('carousels', carousels);
 
     const posts = await prisma.services.findMany({
-        where: { type: category.id }
+        where: { type: category.id },
+        orderBy: { createdAt: 'desc' }
     });
 
     return (

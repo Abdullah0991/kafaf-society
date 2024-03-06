@@ -54,6 +54,7 @@ model Services {
   description String? @db.Text
   mediaUrl    String?
   image       String?
+  createdAt   DateTime @default(now())
 
   @@map(name: "services")
 }
