@@ -48,10 +48,10 @@ model Statistics {
 }
 
 model Services {
-  id          String  @id @default(uuid())
+  id          String   @id @default(uuid())
   type        Int
   title       String
-  description String? @db.Text
+  description String?  @db.Text
   mediaUrl    String?
   image       String?
   createdAt   DateTime @default(now())
@@ -89,4 +89,14 @@ model Carousels {
   image String
 
   @@map(name: "carousels")
+}
+
+model Partners {
+  id        String   @id @default(uuid())
+  name      String?
+  visible   Boolean  @default(true)
+  image     String
+  createdAt DateTime @default(now())
+
+  @@map(name: "partners")
 }

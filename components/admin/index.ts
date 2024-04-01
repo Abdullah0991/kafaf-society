@@ -5,6 +5,7 @@ export { ServicesList, ServicesCreate, ServicesEdit } from './ServicesAdmin';
 export { TasksList, TasksCreate, TasksEdit } from './TasksAdmin';
 export { BoxesList, BoxesCreate, BoxesEdit } from './BoxesAdmin';
 export { CarouselsList, CarouselsEdit, CarouselsCreate } from './CarouselsAdmin';
+export { PartnersList, PartnersCreate, PartnersEdit } from './PartnersAdmin';
 
 export const generateImagePreview = (value: any) => {
     const api = process.env.NEXT_PUBLIC_API_URL;

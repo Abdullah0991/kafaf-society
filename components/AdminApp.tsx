@@ -13,6 +13,9 @@ import {
     NewsCreate,
     NewsEdit,
     NewsList,
+    PartnersCreate,
+    PartnersEdit,
+    PartnersList,
     ServicesCreate,
     ServicesEdit,
     ServicesList,
@@ -39,6 +42,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 
 const messages: Record<string, TranslationMessages> = {
     'ar': arabicMessages,
@@ -129,6 +133,14 @@ const AdminApp = () => (
                 create={CarouselsCreate}
                 icon={ViewCarouselIcon}
                 options={{ label: 'شرائح الصور' }}
+            />
+            <Resource
+                name="partners"
+                list={PartnersList}
+                edit={PartnersEdit}
+                create={PartnersCreate}
+                icon={HandshakeIcon}
+                options={{ label: 'الشركاء' }}
             />
         </Admin>
     </RTL>

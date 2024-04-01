@@ -64,6 +64,12 @@ export const adminDataProvider: DataProvider = withLifecycleCallbacks(baseDataPr
         beforeSave: async (params, _dataProvider1) => {
             return replaceFileWithB64(params, 'image');
         },
+    },
+    {
+        resource: 'partners',
+        beforeSave: async (params, _dataProvider1) => {
+            return replaceFileWithB64(params, 'image');
+        },
     }
 ]);
 
