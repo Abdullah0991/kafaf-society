@@ -53,7 +53,7 @@ export const FOOTER_LINKS = [
         title: 'مواقع التواصل',
         links: [
             { label: 'Facebook', href: 'https://www.facebook.com/KAFAF.SY' },
-            { label: 'Youtube', href: 'https://www.youtube.com/@user-vp6hn6cb9j' },
+            { label: 'Youtube', href: 'https://www.youtube.com/@KAFAFCHARITY' },
             { label: 'Instagram', href: 'https://www.instagram.com/kafafsy' },
             { label: 'TikTok', href: 'https://www.tiktok.com/@kafafassociation' },
         ]
