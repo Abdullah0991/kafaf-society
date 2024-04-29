@@ -6,6 +6,13 @@ import { getImagePath } from "@/lib/helpers";
 import ProgressBar from "@/components/ProgressBar";
 import YTPlayer from "@/components/YTPlayer";
 import DonateButton from "@/components/DonateButton";
+import type { Metadata, ResolvingMetadata } from 'next'
+import { APP_TITLE } from "@/constants";
+
+type Props = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
 
 const getTask = async (id: string) => {
     return prisma.tasks.findUnique({
@@ -15,7 +22,35 @@ const getTask = async (id: string) => {
     });
 }
 
-const CasePage = async ({ params }: { params: { id: string } }) => {
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // fetch data
+    const task = await getTask(params.id);
+
+    if (!task) {
+        return {}
+    }
+
+    return {
+        metadataBase: new URL(process.env.NEXT_PUBLIC_APP_DOMAIN || 'http://localhost:3000'),
+        title: `${task.title} - ${APP_TITLE}`,
+        description: task.description,
+        openGraph: {
+            title: task.title,
+            description: task.description,
+            locale: 'ar-SY',
+            type: "article",
+            images: {
+                url: getImagePath(task.image),
+                alt: task.title
+            }
+        }
+    }
+}
+
+const CasePage = async ({ params }: Props) => {
     const task = await getTask(params.id);
 
     if (!task) {
