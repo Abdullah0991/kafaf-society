@@ -7,7 +7,7 @@ export const getLatestCase = async (category: number) => {
     });
 }
 
-export const getCaseById = async (id: string) => {
+export const getCaseById = async (id: number) => {
     return prisma.tasks.findUnique({
         where: { id }
     });

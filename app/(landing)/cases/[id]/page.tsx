@@ -14,7 +14,7 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const getTask = async (id: string) => {
+const getTask = async (id: number) => {
     return prisma.tasks.findUnique({
         where: {
             id
@@ -27,7 +27,7 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // fetch data
-    const task = await getTask(params.id);
+    const task = await getTask(+params.id);
 
     if (!task) {
         return {}
@@ -51,7 +51,7 @@ export async function generateMetadata(
 }
 
 const CasePage = async ({ params }: Props) => {
-    const task = await getTask(params.id);
+    const task = await getTask(+params.id);
 
     if (!task) {
         return <div className='max-container padding-container py-28'>
