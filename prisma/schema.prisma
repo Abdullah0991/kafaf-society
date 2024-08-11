@@ -42,6 +42,7 @@ model Statistics {
   logistic  Int      @default(0)
   clothes   Int      @default(0)
   emergency Int      @default(0)
+  education Int      @default(0)
   createdAt DateTime @default(now())
 
   @@map(name: "statistics")

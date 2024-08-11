@@ -18,10 +18,11 @@ const Hero = async () => {
             clothes: 0,
             food: 0,
             logistic: 0,
-            activity: 0
+            activity: 0,
+            education: 0,
         } as Statistics;
 
-    const total = stats.activity + stats.medical + stats.emergency + stats.clothes + stats.food + stats.logistic;
+    const total = stats.activity + stats.medical + stats.emergency + stats.clothes + stats.food + stats.logistic + stats.education;
 
     return (
         <>
@@ -40,7 +41,7 @@ const Hero = async () => {
                         <p className='text-green-800 text-4xl lg:text-5xl'>{numFormatter(total)}</p>
                     </div>
                 </div>
-                <div className='relative grid md:grid-cols-3 xl:grid-cols-6 gap-5 mt-10 xl:mt-20'>
+                <div className='relative flex flex-wrap gap-5 mt-10 xl:mt-20'>
                     {
                         STATS.map((st) => (
                             <InfoCard label={st.name} value={Number(stats[st.key as keyof Statistics])} key={st.key} />
@@ -62,7 +63,7 @@ const Hero = async () => {
 const InfoCard = ({ label, value }: { label: string, value: number }) => {
     return (
         <div className='relative flex-col rounded-3xl border-4 border-dashed flex-1 p-4'>
-            <div className='flex flex-row md:flex-col gap-5 justify-between items-center'>
+            <div className='flex flex-row md:flex-col gap-5 justify-between items-center h-full'>
                 <p className='text-3xl lg:text-4xl text-center flex-1'>{numFormatter(value)}</p>
                 <p className='text-gray-400 text-xl text-center flex-1'>{label}</p>
             </div>

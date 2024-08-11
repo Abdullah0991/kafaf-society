@@ -30,6 +30,7 @@ export const StatisticsList = () => (
             <NumberField source="emergency" label='برنامج الاستجابة الطارئة' textAlign='center' />
             <NumberField source="logistic" label='الدعم الميداني' textAlign='center' />
             <NumberField source="food" label='برنامج سوء التغذية' textAlign='center' />
+            <NumberField source="education" label='البرنامج التعليمي' textAlign='center' />
             <DateField source="createdAt" label='تاريخ التعديل' />
         </Datagrid>
     </List>
@@ -37,7 +38,9 @@ export const StatisticsList = () => (
 
 export const StatisticsCreate = () => (
     <Create>
-        <SimpleForm defaultValues={{ medical: 0, activity: 0, clothes: 0, emergency: 0, logistic: 0, food: 0 }}>
+        <SimpleForm
+            defaultValues={{ medical: 0, activity: 0, clothes: 0, emergency: 0, logistic: 0, food: 0, education: 0 }}
+        >
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', width: '100%' }}>
                 <NumberInput
                     name='medical'
@@ -85,6 +88,14 @@ export const StatisticsCreate = () => (
                     name='food'
                     source='food'
                     label='برنامج سوء التغذية'
+                    min={0}
+                    validate={required()}
+                    fullWidth
+                />
+                <NumberInput
+                    name='education'
+                    source='education'
+                    label='البرنامج التعليمي'
                     min={0}
                     validate={required()}
                     fullWidth
@@ -149,6 +160,14 @@ export const StatisticsEdit = () => (
                     name='food'
                     source='food'
                     label='برنامج سوء التغذية'
+                    min={0}
+                    validate={required()}
+                    fullWidth
+                />
+                <NumberInput
+                    name='education'
+                    source='education'
+                    label='البرنامج التعليمي'
                     min={0}
                     validate={required()}
                     fullWidth

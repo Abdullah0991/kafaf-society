@@ -125,6 +125,10 @@ export const STATS = [
     {
         name: 'برنامج الاستجابة الطارئة',
         key: 'emergency'
+    },
+    {
+        name: 'البرنامج التعليمي',
+        key: 'education'
     }
 ];
 
