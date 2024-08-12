@@ -3,13 +3,48 @@ import BackButton from "@/components/BackButton";
 import Image from "next/image";
 import { getImagePath } from "@/lib/helpers";
 import prisma from "@/lib/prisma";
+import type { Metadata, ResolvingMetadata } from "next";
+import { APP_TITLE } from "@/constants";
 
-const getNewsById = async (id: string) => {
+type Props = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+const getNewsById = async (id: number) => {
     return prisma.news.findUnique({ where: { id } });
 }
 
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // fetch data
+    const news = await getNewsById(+params.id);
+
+    if (!news) {
+        return {}
+    }
+
+    return {
+        metadataBase: new URL(process.env.NEXT_PUBLIC_APP_DOMAIN || 'http://localhost:3000'),
+        title: `${news.title} - ${APP_TITLE}`,
+        description: news.description,
+        openGraph: {
+            title: news.title,
+            description: news.description,
+            locale: 'ar-SY',
+            type: "article",
+            images: {
+                url: getImagePath(news.image),
+                alt: news.title
+            }
+        }
+    }
+}
+
 const NewsDetailsPage = async ({ params }: { params: { id: string } }) => {
-    const news = await getNewsById(params.id);
+    const news = await getNewsById(+params.id);
 
     if (!news) {
         return <div className='max-container padding-container py-28'>
