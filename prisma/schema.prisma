@@ -22,7 +22,7 @@ model News {
 }
 
 model Campaigns {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   title       String
   description String   @db.Text
   target      Int      @default(0)

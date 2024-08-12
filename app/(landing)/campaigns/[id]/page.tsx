@@ -6,14 +6,48 @@ import ProgressBar from "@/components/ProgressBar";
 import { getImagePath } from "@/lib/helpers";
 import YTPlayer from "@/components/YTPlayer";
 import DonateButton from "@/components/DonateButton";
+import type { Metadata, ResolvingMetadata } from "next";
+import { APP_TITLE } from "@/constants";
 
-/*export async function generateStaticParams() {
-    return CAMPAIGNS.map((c) => ({ id: c.id }));
-}*/
+type Props = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+const getCampaign = async (id: number) => {
+    return prisma.campaigns.findUnique({ where: { id } });
+}
+
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // fetch data
+    const campaign = await getCampaign(+params.id);
+
+    if (!campaign) {
+        return {}
+    }
+
+    return {
+        metadataBase: new URL(process.env.NEXT_PUBLIC_APP_DOMAIN || 'http://localhost:3000'),
+        title: `${campaign.title} - ${APP_TITLE}`,
+        description: campaign.description,
+        openGraph: {
+            title: campaign.title,
+            description: campaign.description,
+            locale: 'ar-SY',
+            type: "article",
+            images: {
+                url: getImagePath(campaign.image),
+                alt: campaign.title
+            }
+        }
+    }
+}
 
 const CampaignDetails = async ({ params }: { params: { id: string } }) => {
-    // const campaign = CAMPAIGNS.find(x => x.id === params.id);
-    const campaign = await prisma.campaigns.findUnique({ where: { id: params.id } });
+    const campaign = await getCampaign(+params.id );
 
     if (!campaign) {
         return <div className='max-container padding-container py-28'>
