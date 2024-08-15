@@ -22,6 +22,7 @@ const route = async (req: Request) => {
             );
 
             revalidatePath('/cases');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
@@ -48,6 +49,7 @@ const route = async (req: Request) => {
                 });
 
             revalidatePath('/cases');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
@@ -60,6 +62,7 @@ const route = async (req: Request) => {
             const result = await deleteHandler<Prisma.TasksDeleteArgs>(body, prisma.tasks);
 
             revalidatePath('/cases');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
@@ -81,6 +84,7 @@ const route = async (req: Request) => {
             const result = await deleteManyHandler(body, prisma.tasks);
 
             revalidatePath('/cases');
+            revalidatePath('/box');
 
             return NextResponse.json(result);
         }
