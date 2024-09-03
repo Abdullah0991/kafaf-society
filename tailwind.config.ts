@@ -31,7 +31,7 @@ const config: Config = {
                 },
             },
             backgroundImage: {
-                'bg-main': "url('/main_bg.jpg')",
+                'bg-main': "url('/main_bg.webp')",
                 'kefaf-bg': "url('/bg_1.webp')"
             },
             screens: {
