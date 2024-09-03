@@ -2,7 +2,7 @@ import React from 'react';
 import prisma from "@/lib/prisma";
 import BackButton from "@/components/BackButton";
 import Image from "next/image";
-import { getImagePath } from "@/lib/helpers";
+import { getImagePath, urlify } from "@/lib/helpers";
 import ProgressBar from "@/components/ProgressBar";
 import YTPlayer from "@/components/YTPlayer";
 import DonateButton from "@/components/DonateButton";
@@ -89,8 +89,8 @@ const CasePage = async ({ params }: Props) => {
             </div>
             <div
                 className='flex flex-col md:flex-row px-4 py-4 md:mb-10 border rounded-md min-h-[200px] gap-8 md:gap-4'>
-                <p className='text-lg whitespace-break-spaces flex-1'>
-                    {task.description}
+                <p className='text-lg whitespace-break-spaces flex-1'
+                   dangerouslySetInnerHTML={{ __html: urlify(task.description) }}>
                 </p>
                 {task.mediaUrl &&
                     <div className='flex-1'>

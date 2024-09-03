@@ -1,7 +1,7 @@
 import React from 'react';
 import BackButton from "@/components/BackButton";
 import Image from "next/image";
-import { getImagePath } from "@/lib/helpers";
+import { getImagePath, urlify } from "@/lib/helpers";
 import prisma from "@/lib/prisma";
 import type { Metadata, ResolvingMetadata } from "next";
 import { APP_TITLE } from "@/constants";
@@ -68,8 +68,8 @@ const NewsDetailsPage = async ({ params }: { params: { id: string } }) => {
             </h1>
             <div
                 className='flex flex-col md:flex-row px-4 py-4 md:mb-10 border rounded-md min-h-[200px] gap-8 md:gap-4'>
-                <p className='text-lg whitespace-break-spaces flex-1'>
-                    {news.description}
+                <p className='text-lg whitespace-break-spaces flex-1'
+                   dangerouslySetInnerHTML={{ __html: urlify(news.description) }}>
                 </p>
                 {/*{news.mediaUrl &&
                     <div className='flex-1'>

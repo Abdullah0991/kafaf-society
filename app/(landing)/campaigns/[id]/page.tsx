@@ -3,7 +3,7 @@ import Image from "next/image";
 import BackButton from "@/components/BackButton";
 import prisma from "@/lib/prisma";
 import ProgressBar from "@/components/ProgressBar";
-import { getImagePath } from "@/lib/helpers";
+import { getImagePath, urlify } from "@/lib/helpers";
 import YTPlayer from "@/components/YTPlayer";
 import DonateButton from "@/components/DonateButton";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -47,7 +47,7 @@ export async function generateMetadata(
 }
 
 const CampaignDetails = async ({ params }: { params: { id: string } }) => {
-    const campaign = await getCampaign(+params.id );
+    const campaign = await getCampaign(+params.id);
 
     if (!campaign) {
         return <div className='max-container padding-container py-28'>
@@ -74,8 +74,8 @@ const CampaignDetails = async ({ params }: { params: { id: string } }) => {
             </div>
             <div
                 className='flex flex-col md:flex-row px-4 py-4 md:mb-10 border rounded-md min-h-[200px] gap-8 md:gap-4'>
-                <p className='text-lg whitespace-break-spaces flex-1'>
-                    {campaign.description}
+                <p className='text-lg whitespace-break-spaces flex-1'
+                   dangerouslySetInnerHTML={{ __html: urlify(campaign.description) }}>
                 </p>
                 {campaign.mediaUrl &&
                     <div className='flex-1'>
