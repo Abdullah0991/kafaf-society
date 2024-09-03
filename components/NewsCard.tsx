@@ -1,5 +1,5 @@
 import { News } from ".prisma/client";
-import { getImagePath } from "@/lib/helpers";
+import { dateFormatter, getImagePath } from "@/lib/helpers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +18,7 @@ const NewsCard = ({ id, title, description, image, date }: News) => {
                         <span>بتاريخ</span>
                         &nbsp;
                         <span>
-                        {new Date(date).toLocaleDateString()}
+                        {dateFormatter(date)}
                     </span>
                     </div>
                     <Link href={`/news/${id}`} className='text-blue-500'>
