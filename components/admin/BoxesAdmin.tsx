@@ -26,6 +26,7 @@ export const BoxesList = () => (
             <NumberField source="cash" label='المبلغ المجموع' options={currencyDisplayOptions} />
             <BooleanField source="isActive" label='فعال' />
             <DateField source="createdAt" label='تاريخ الإنشاء' />
+            <DateField source="lastUpdate" label='آخر تعديل' />
         </Datagrid>
     </List>
 );
@@ -42,7 +43,10 @@ export const BoxesEdit = () => (
             <NumberInput source="cash" name="cash" label='المبلغ المجموع' validate={[required(), minValue(0)]} fullWidth
                          InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} />
             <BooleanInput source="isActive" name="isActive" label='فعال' />
-            <DateInput source="createdAt" name="createdAt" label='تاريخ الإنشاء' InputProps={{ readOnly: true }} />
+            <div style={{ display: 'flex', gap: '1rem' }}>
+                <DateInput source="createdAt" name="createdAt" label='تاريخ الإنشاء' InputProps={{ readOnly: true }} />
+                <DateInput source="lastUpdate" name="lastUpdate" label='آخر تعديل' InputProps={{ readOnly: true }} />
+            </div>
         </SimpleForm>
     </Edit>
 );

@@ -75,11 +75,12 @@ model Tasks {
 }
 
 model Boxes {
-  id        String   @id @default(uuid())
-  name      String
-  cash      Int      @default(0)
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  name       String
+  cash       Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  lastUpdate DateTime @default(now())
 
   @@map(name: "boxes")
 }

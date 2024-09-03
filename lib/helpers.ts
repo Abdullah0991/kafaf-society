@@ -20,3 +20,8 @@ export const getImagePath = (image: string | null): string => {
     const api = process.env.NEXT_PUBLIC_API_URL;
     return image ? `${api}/files?n=${image}` : '/app_logo_no_attributions.png';
 }
+
+export const dateFormatter = (date: Date): string => {
+  const formatter = new Intl.DateTimeFormat('en-GB');
+  return formatter.format(date);
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import CaseDisplay from "@/components/CaseDisplay";
-import { currFormatter } from "@/lib/helpers";
+import { currFormatter, dateFormatter } from "@/lib/helpers";
 import { BOX_DESC, TaskCategories } from "@/constants";
 import Link from "next/link";
 import { getLatestCase } from "@/lib/tasks-api";
@@ -26,6 +26,8 @@ const Box = async () => {
     const latestCases = await Promise.all(TaskCategories.map(cat => getLatestCase(cat.id)));
     const activeBoxes = await getActiveBoxes();
     const { _sum } = await getBoxesTotal();
+    const lastDate = activeBoxes.length ?
+        dateFormatter(new Date(Math.max(...activeBoxes.map(x => x.lastUpdate.getTime())))) : '-';
 
     return (
         <>
@@ -36,7 +38,6 @@ const Box = async () => {
                             <Image src={'/box_dark.png'} alt={'box_logo'} fill objectFit='cover' />
                         </div>
                         <div className='flex-grow'>
-                            {/*<h1 className='text-3xl md:text-5xl text-center md:text-start'>صندوق المستقبل بأيدينا</h1>*/}
                             <div className='flex flex-col gap-5 justify-center items-center'>
                                 <div className='flex flex-col md:flex-row gap-3 items-center'>
                                     <h2 className='text-3xl'>إجمالي تبرعاتكم:</h2>
@@ -44,7 +45,7 @@ const Box = async () => {
                                 </div>
                                 <div className='flex gap-3'>
                                     <span>آخر تحديث:</span>
-                                    <span className='text-gray-30'>{new Date().toLocaleString()}</span>
+                                    <span className='text-gray-30'>{lastDate}</span>
                                 </div>
                             </div>
                         </div>
