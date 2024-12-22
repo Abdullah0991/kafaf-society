@@ -46,7 +46,7 @@ const Footer = () => {
                 </div>
 
                 <div className='border bg-gray-20' />
-                <p className='regular-14 w-full text-center text-gray-50'>جميع الحفوق محفوظة | جمعية كفاف&copy; 2023</p>
+                <p className='regular-14 w-full text-center text-gray-50'>جميع الحفوق محفوظة | جمعية كفاف&copy; 2024</p>
             </div>
         </footer>
     );
