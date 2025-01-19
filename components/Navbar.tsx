@@ -10,7 +10,7 @@ const Navbar = () => {
     // const currentPath = router.pathname.slice(1);
 
     return (
-        <nav className='z-30 py-6 px-6 flex justify-between items-center shadow'>
+        <nav className='z-30 py-6 px-6 flex justify-between items-center shadow-[inset_0_-2px_4px_rgba(0,0,0,0.3)]'>
             <Link href={'/'} className='flex gap-2 items-center'>
                 <Image src={'/app_logo_sm.png'} alt={'logo'} width={32} height={32} />
                 <label className='font-bold'>كفاف</label>

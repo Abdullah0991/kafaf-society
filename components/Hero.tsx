@@ -29,7 +29,7 @@ const Hero = async () => {
             <section className='max-container padding-container min-h-[calc(100dvh-80px)]'>
                 <div className='hero-map' />
                 <div className='flex py-8 md:py-10'>
-                    <h1 className='w-full font-bold text-3xl lg:text-6xl text-center text-white drop-shadow-2xl'>
+                    <h1 className='w-full font-bold text-3xl lg:text-6xl text-center text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
                         {APP_TITLE}
                     </h1>
                 </div>
